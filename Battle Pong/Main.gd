@@ -9,9 +9,6 @@ var playing = false
 var score_event = false
 var game_done = false
 
-
-
-
 const SPACE_TO_PLAY = "Press SPACE to Play!"
 const P1_WIN = "Player 1 won!"
 const P2_WIN = "Player 2 won!"
