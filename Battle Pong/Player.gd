@@ -5,10 +5,11 @@ signal hit
 export var speed = 400 # (pixel/sec)
 export var is_player_one = true # Select player one or two
 var screen_size
-
+var player_size
 # Called when the node enters the scene tree for the first time.
 func _ready():
     screen_size = get_viewport_rect().size
+    player_size =$CollisionShape2D.shape.extents
     #hide()
     pass # Replace with function body.
 
@@ -36,13 +37,13 @@ func _process(delta):
 
     position += velocity * delta
     #position.x = clamp(position.x, 0, screen_size.x) # ändert sich nicht
-    position.y = clamp(position.y, 0, screen_size.y)
+    position.y = clamp(position.y, 0+player_size.y, screen_size.y-player_size.y)
 
 
 
 func _on_Player_body_entered(body):
     emit_signal("hit")
-    $CollisionShape2D.set_deferred("disabled", true) # TODO das muss aufgerufen werden, wenn der ball das spielfeld auf der eigenen Seite verlässt
+    #$CollisionShape2D.set_deferred("disabled", true) # TODO das muss aufgerufen werden, wenn der ball das spielfeld auf der eigenen Seite verlässt
     
 func start(pos):
     position = pos
