@@ -2,7 +2,8 @@ extends RigidBody2D
 
 
 # Declare member variables here. 
-export var speed = 200 
+export var speed = 300 
+var ball_size
 var playing = false
 var dx =100
 var dy =0
@@ -28,15 +29,15 @@ func _physics_process(delta):
 func ball_hit_paddle():
     dx *= -1
     dy = rand_range(-y_range, y_range)
-    if speed < 300:
-        speed += 5
+    
+    
     if y_range < 200:
         y_range += 5
 
 func change_dy_on_wall_hit():
-    if self.position.y <= 0:
+    if self.position.y <= 0+ball_size.y:
         dy = rand_range(0, y_range)
-    if self.position.y >= 600:
+    if self.position.y >= 600-ball_size.y:
         dy = rand_range(-y_range, 0)
 
 func set_playing(_playing):
@@ -46,3 +47,4 @@ func start(pos):
     position = pos
     show()
     $CollisionShape2D.disabled = false
+    ball_size =$CollisionShape2D.shape.extents
