@@ -1,44 +1,63 @@
-extends RigidBody2D
+extends KinematicBody2D
 
 
 # Declare member variables here. 
 export var speed = 300 
+export var speed_max = 600
+export var bounce_degree_max = 100
 var ball_size
 var playing = false
-var dx =100
-var dy =0
+var velocity = Vector2(100,0)
 var y_range = 100
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    set_sync_to_physics(false)
     pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass
 
 
 func _physics_process(delta):
     if playing:
-        change_dy_on_wall_hit()
+        #change_dy_on_wall_hit()
         self.rotation = 0
-        self.linear_velocity = Vector2(dx, dy) * delta * speed
+        #self.linear_velocity = Vector2(dx, dy) * delta * speed
+        var move = velocity.normalized() * delta * speed
 
+        var collision = self.move_and_collide(move, false)
+        
+        if collision:
+            print("I collided with ", collision.collider.name)
+            if collision.collider.name == "WallTop" || collision.collider.name == "WallBottom":
+                velocity = velocity.bounce(collision.normal)
+            elif collision.collider.name == "PlayerOne" || collision.collider.name == "PlayerTwo":
+                pass
+                # velocity.x *=-1
+                # var localCollisionPos = collision.Position - collision.collider.Position;
+            
 
-func ball_hit_paddle():
-    dx *= -1
-    dy = rand_range(-y_range, y_range)
+func ball_hit_paddle(player_position, shape):
+    # Geschwindigkeitserhöhung
+    if speed < speed_max:
+        speed +=20
     
+    # Ball geht in die andere Richtung
+    velocity.x*=-1
     
-    if y_range < 200:
-        y_range += 5
+    var half_player_height = shape.extents.y/2
+    
+    var collision_height = player_position.y-position.y
+    if collision_height<0:
+        collision_height = abs(collision_height)
+        var bounce_degree = half_player_height / bounce_degree_max * collision_height
+        velocity.y+=bounce_degree
+    elif collision_height>0:
+        collision_height = abs(collision_height)
+        var bounce_degree = half_player_height / bounce_degree_max * collision_height
+        velocity.y-=bounce_degree
 
-func change_dy_on_wall_hit():
-    if self.position.y <= 0+ball_size.y:
-        dy = rand_range(0, y_range)
-    if self.position.y >= 600-ball_size.y:
-        dy = rand_range(-y_range, 0)
 
 func set_playing(_playing):
     playing = _playing

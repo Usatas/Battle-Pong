@@ -107,10 +107,10 @@ func handle_game_end():
 
 
 func _on_PlayerTwo_hit():
-    ball.ball_hit_paddle()
+    ball.ball_hit_paddle($PlayerTwo.position, $PlayerTwo/CollisionShape2D.shape)
     pass # Replace with function body.
 
 
 func _on_PlayerOne_hit():
-    ball.ball_hit_paddle()
+    ball.ball_hit_paddle($PlayerOne.position, $PlayerOne/CollisionShape2D.shape)
     pass # Replace with function body.
