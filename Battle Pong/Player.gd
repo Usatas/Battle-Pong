@@ -10,6 +10,8 @@ var player_size
 func _ready():
     screen_size = get_viewport_rect().size
     player_size =$CollisionShape2D.shape.extents
+    if(is_player_one):
+        $ColorRect.color=Color(0,0,0,1)
     #hide()
     pass # Replace with function body.
 

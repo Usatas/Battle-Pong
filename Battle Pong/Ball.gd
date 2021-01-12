@@ -4,7 +4,7 @@ extends KinematicBody2D
 # Declare member variables here. 
 export var speed = 300 
 export var speed_max = 600
-export var bounce_degree_max = 100
+export var bounce_degree_max = 60
 var ball_size
 var playing = false
 var velocity = Vector2(100,0)
@@ -38,7 +38,7 @@ func _physics_process(delta):
                 # var localCollisionPos = collision.Position - collision.collider.Position;
             
 
-func ball_hit_paddle(player_position, shape):
+func ball_hit_paddle(player_position, player_shape, is_player_one):
     # Geschwindigkeitserhöhung
     if speed < speed_max:
         speed +=20
@@ -46,7 +46,15 @@ func ball_hit_paddle(player_position, shape):
     # Ball geht in die andere Richtung
     velocity.x*=-1
     
-    var half_player_height = shape.extents.y/2
+    var half_player_height = player_shape.y/2
+    if (is_player_one and (player_position.x > position.x-(ball_size.x/2 + player_shape.x/2))):
+        velocity.y*=-1
+        velocity.x*=-1
+        pass
+    if (not is_player_one and (player_position.x < position.x + (ball_size.x/2 + player_shape.x/2))):
+        velocity.y*=-1
+        velocity.x*=-1
+        pass
     
     var collision_height = player_position.y-position.y
     if collision_height<0:
@@ -67,3 +75,8 @@ func start(pos):
     show()
     $CollisionShape2D.disabled = false
     ball_size =$CollisionShape2D.shape.extents
+    randomize()
+    velocity = Vector2(100, rand_range(-200,200))
+    if rand_range(-1,1)<0:
+        velocity.x*=-1
+    print(velocity)
