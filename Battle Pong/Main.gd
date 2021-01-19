@@ -16,6 +16,8 @@ var Ball = preload("Ball.tscn")
 var ball = Ball.instance()
 var score_player_one = 0
 var score_player_two = 0
+var reward_player_one=0
+var reward_player_two=0
 
 var playing = false
 var score_event = false
@@ -60,7 +62,7 @@ func play():
         score_player_one = 0
         score_player_two = 0
         message = SPACE_TO_PLAY
-        update_score()
+        update_score()    
     playing = true
     ball.set_playing(playing)
     $DisplayMessage.visible = false
@@ -78,10 +80,13 @@ func check_point_scored():
     if ball.position.x <= 0:
         score_event = true
         score_player_two += 1
-
+        reward_player_one=1
+        reward_player_two=(-1)
     if ball.position.x >= 1024:
         score_event = true
         score_player_one += 1
+        reward_player_one=(-1)
+        reward_player_two=1
     update_score()
     if score_player_one == 5 or score_player_two == 5:
         game_done = true
@@ -111,6 +116,8 @@ func game_over():
 func new_game():
     score_player_one = 0
     score_player_two = 0
+    reward_player_one = 0
+    reward_player_two = 0
     $PlayerOne.start($StartPositionPlayerOne.position)
     $PlayerTwo.start($StartPositionPlayerTwo.position)
     $StartTimer.start()
@@ -229,20 +236,10 @@ func _on_data(id):
             if(i == "start_game"):
                 play()
                 var return_value = get_return_value_as_utf8_JSON()
-                #print(return_value)
-                #if(player_one_client_id and action_player_one.is_pressed() == false):
-                #    _server.get_peer(player_one_client_id).put_packet(return_value)
-                #if(player_two_client_id) and action_player_two.is_pressed() == false:
-                #    _server.get_peer(player_two_client_id).put_packet(return_value)
                 _server.get_peer(id).put_packet(return_value)
                 pass
             if(i=="connect_player"):
                 var return_value = get_return_value_as_utf8_JSON()
-                #print(return_value)
-                #if(player_one_client_id and action_player_one.is_pressed() == false):
-                #    _server.get_peer(player_one_client_id).put_packet(return_value)
-                #if(player_two_client_id) and action_player_two.is_pressed() == false:
-                #    _server.get_peer(player_two_client_id).put_packet(return_value)
                 _server.get_peer(id).put_packet(return_value)
                 pass
     if(next_step_player_one and next_step_player_two):
@@ -252,7 +249,7 @@ func _on_data(id):
 
 func get_return_value_as_utf8_JSON():
     var observation = {"PlayerOne":{"X":$PlayerOne.position.x,"Y":$PlayerOne.position.y}, "PlayerTwo":{"X":$PlayerTwo.position.x,"Y":$PlayerTwo.position.y}, "ball":ball.get_observation()}
-    var return_value = {"observation":observation, "reward":{"PlayerOneScore":score_player_one, "PlayerTwoScore":score_player_two}, "done":(not playing), "info":{}}
+    var return_value = {"observation":observation, "reward":{"PlayerOne":reward_player_one, "PlayerTwo":reward_player_two}, "done":(not playing), "info":{"PlayerOneScore":score_player_one, "PlayerTwoScore":score_player_two}}
     return (JSON.print(return_value)).to_utf8()
 
 
@@ -268,6 +265,8 @@ func _on_RunTimer_timeout():
     next_step_player_two = false
     
     var return_value = get_return_value_as_utf8_JSON()
+    reward_player_one = 0
+    reward_player_two = 0
     #print(return_value)
     if(player_one_client_id):
         _server.get_peer(player_one_client_id).put_packet(return_value)
