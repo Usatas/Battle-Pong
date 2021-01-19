@@ -5,6 +5,7 @@
 [ext_resource path="res://Wall.tscn" type="PackedScene" id=3]
 
 [node name="Node2D" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 2 )
 
 [node name="Player2Score" type="Label" parent="."]
@@ -55,8 +56,10 @@ position = Vector2( 512, 300 )
 position = Vector2( 52, 300 )
 
 [node name="PlayerTwo" parent="." instance=ExtResource( 1 )]
+pause_mode = 1
 
 [node name="PlayerOne" parent="." instance=ExtResource( 1 )]
+pause_mode = 1
 is_player_one = true
 
 [node name="ColorRect4" type="ColorRect" parent="."]
@@ -80,5 +83,11 @@ __meta__ = {
 
 [node name="WallBottom" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 600 )
+
+[node name="RunTimer" type="Timer" parent="."]
+pause_mode = 2
+wait_time = 0.1
+one_shot = true
 [connection signal="hit" from="PlayerTwo" to="." method="_on_PlayerTwo_hit"]
 [connection signal="hit" from="PlayerOne" to="." method="_on_PlayerOne_hit"]
+[connection signal="timeout" from="RunTimer" to="." method="_on_RunTimer_timeout"]
