@@ -31,11 +31,12 @@ position = Vector2( -1.5, 0 )
 scale = Vector2( 3, 6 )
 frames = SubResource( 1 )
 animation = "wave"
-frame = 2
+frame = 1
 speed_scale = 2.0
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 9
 shape = SubResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]

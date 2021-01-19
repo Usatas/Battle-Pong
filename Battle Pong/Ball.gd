@@ -70,6 +70,9 @@ func ball_hit_paddle(player_position, player_shape, is_player_one):
 func set_playing(_playing):
     playing = _playing
     
+func set_pause(value):
+    get_tree().paused=value
+    
 func start(pos):
     position = pos
     show()
@@ -80,3 +83,6 @@ func start(pos):
     if rand_range(-1,1)<0:
         velocity.x*=-1
     print(velocity)
+
+func get_observation():
+    return {"velocity":{"X":velocity.x,"Y":velocity.y}, "position":{"X":position.x,"Y":position.y}}

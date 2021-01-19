@@ -51,3 +51,7 @@ func start(pos):
     position = pos
     show()
     $CollisionShape2D.disabled = false
+
+
+func set_pause(value):
+    get_tree().paused=value
