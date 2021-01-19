@@ -25,7 +25,7 @@ func _physics_process(delta):
         self.rotation = 0
         #self.linear_velocity = Vector2(dx, dy) * delta * speed
         var move = velocity.normalized() * delta * speed
-
+        print(delta)
         var collision = self.move_and_collide(move, false)
         
         if collision:
@@ -85,4 +85,5 @@ func start(pos):
     print(velocity)
 
 func get_observation():
-    return {"velocity":{"X":velocity.x,"Y":velocity.y}, "position":{"X":position.x,"Y":position.y}}
+    var move = velocity.normalized()*speed
+    return {"velocity":{"X":move.x,"Y":move.y}, "position":{"X":position.x,"Y":position.y}}
