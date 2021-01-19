@@ -80,13 +80,13 @@ func check_point_scored():
     if ball.position.x <= 0:
         score_event = true
         score_player_two += 1
-        reward_player_one=1
-        reward_player_two=(-1)
+        reward_player_one=(-1)
+        reward_player_two=1
     if ball.position.x >= 1024:
         score_event = true
         score_player_one += 1
-        reward_player_one=(-1)
-        reward_player_two=1
+        reward_player_one=1
+        reward_player_two=(-1)
     update_score()
     if score_player_one == 5 or score_player_two == 5:
         game_done = true
