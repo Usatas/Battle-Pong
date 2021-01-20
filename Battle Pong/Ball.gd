@@ -19,20 +19,25 @@ func _ready():
 
 
 
-func _physics_process(delta):
+#func _physics_process(delta):
+func run(delta):
     if playing:
         #change_dy_on_wall_hit()
         self.rotation = 0
         #self.linear_velocity = Vector2(dx, dy) * delta * speed
         var move = velocity.normalized() * delta * speed
-        print(delta)
+        #print(delta)
         var collision = self.move_and_collide(move, false)
         
         if collision:
-            print("I collided with ", collision.collider.name)
+            #print("I collided with ", collision.collider.name)
             if collision.collider.name == "WallTop" || collision.collider.name == "WallBottom":
                 velocity = velocity.bounce(collision.normal)
-            elif collision.collider.name == "PlayerOne" || collision.collider.name == "PlayerTwo":
+            elif collision.collider.name == "PlayerOne":
+                ball_hit_paddle(get_tree().get_root().find_node("PlayerOne", true, false).position, get_tree().get_root().find_node("PlayerOne", true, false).get_shape(), true) 
+            elif collision.collider.name == "PlayerTwo":
+                ball_hit_paddle(get_tree().get_root().find_node("PlayerTwo", true, false).position, get_tree().get_root().find_node("PlayerTwo", true, false).get_shape(), false) 
+                
                 pass
                 # velocity.x *=-1
                 # var localCollisionPos = collision.Position - collision.collider.Position;
@@ -82,7 +87,7 @@ func start(pos):
     velocity = Vector2(100, rand_range(-200,200))
     if rand_range(-1,1)<0:
         velocity.x*=-1
-    print(velocity)
+    #print(velocity)
 
 func get_observation():
     var move = velocity.normalized()*speed

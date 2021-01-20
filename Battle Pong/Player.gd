@@ -1,4 +1,4 @@
-extends Area2D
+extends RigidBody2D
 signal hit
 
 # Declare member variables here. Examples:
@@ -12,12 +12,12 @@ func _ready():
     player_size =$CollisionShape2D.shape.extents
     if(is_player_one):
         $ColorRect.color=Color(0,0,0,1)
-    #hide()
-    pass # Replace with function body.
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+#func _process(delta):
+func run(delta):
     var velocity = Vector2()  # The player's movement vector.
     if is_player_one:
         if Input.is_action_pressed("player_one_down"):
@@ -41,11 +41,12 @@ func _process(delta):
     #position.x = clamp(position.x, 0, screen_size.x) # ändert sich nicht
     position.y = clamp(position.y, 0+player_size.y, screen_size.y-player_size.y)
 
-
+func get_shape():
+    return $CollisionShape2D.shape.extents
 
 func _on_Player_body_entered(body):
     emit_signal("hit")
-    #$CollisionShape2D.set_deferred("disabled", true) # TODO das muss aufgerufen werden, wenn der ball das spielfeld auf der eigenen Seite verlässt
+
     
 func start(pos):
     position = pos
