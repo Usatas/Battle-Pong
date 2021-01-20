@@ -6,7 +6,7 @@ const PORT = 9080
 var _server = WebSocketServer.new()
 var player_one_client_id
 var player_two_client_id
-var deltaN = 0
+
 var action_player_one =  InputEventAction.new()
 var next_step_player_one = false
 var action_player_two =  InputEventAction.new()
@@ -29,6 +29,8 @@ const P2_WIN = "Player 2 won!"
 var message = SPACE_TO_PLAY
 
 func _ready():
+    VisualServer.render_loop_enabled = false # disable rendering to create a massive boost
+    
     # Connect base signals to get notified of new client connections,
     # disconnections, and disconnect requests.
     _server.connect("client_connected", self, "_connected")
@@ -51,7 +53,8 @@ func _ready():
     display_message()
     update_score()
     pause()
-    
+
+
 func _input(_event):
     if Input.is_key_pressed(KEY_SPACE):
         play()
@@ -69,8 +72,9 @@ func play():
 
 
 func _process(delta):
-    # print(delta)
-    _server.poll() # in in steuerung durch Timer auslagern, damit der Process durch Pause lahm gelegt werden kann
+    # Call this in _process or _physics_process.
+    # Data transfer, and signals emission will only happen when calling this function.
+    _server.poll()
 
     check_point_scored()
     handle_score_event()
@@ -82,11 +86,13 @@ func check_point_scored():
         score_player_two += 1
         reward_player_one=(-1)
         reward_player_two=1
+        print("player two won")
     if ball.position.x >= 1024:
         score_event = true
         score_player_one += 1
         reward_player_one=1
         reward_player_two=(-1)
+        print("player one won")
     update_score()
     if score_player_one == 5 or score_player_two == 5:
         game_done = true
@@ -109,9 +115,6 @@ func display_message():
     $DisplayMessage.text = message
     $DisplayMessage.visible = true
     
-func game_over():
-    $ScoreTimer.stop()
-    $MobTimer.stop()
 
 func new_game():
     score_player_one = 0
@@ -160,17 +163,14 @@ func _on_PlayerOne_hit():
 func _connected(id, proto):
     # This is called when a new peer connects, "id" will be the assigned peer id,
     # "proto" will be the selected WebSocket sub-protocol (which is optional)
-    #if(not player_one_client_id):
-    #    player_one_client_id = id
-    #if(not player_two_client_id):
-    #    player_two_client_id = id
-    print("Client %d connected with protocol: %s" % [id, proto])
-
+    #print("Client %d connected with protocol: %s" % [id, proto])
+    pass
 
 func _close_request(id, code, reason):
     # This is called when a client notifies that it wishes to close the connection,
     # providing a reason string and close code.
-    print("Client %d disconnecting with code: %d, reason: %s" % [id, code, reason])
+    #print("Client %d disconnecting with code: %d, reason: %s" % [id, code, reason])
+    pass
 
 
 func _disconnected(id, was_clean = false):
@@ -179,28 +179,26 @@ func _disconnected(id, was_clean = false):
     # was correctly notified by the remote peer before closing the socket.
     if( player_one_client_id == id ):
         player_one_client_id = null
-        print("Player One with Client %d disconnected, clean: %s" % [id, str(was_clean)])
+        #print("Player One with Client %d disconnected, clean: %s" % [id, str(was_clean)])
     if(player_two_client_id== id):
         player_two_client_id = null
-        print("Player Two with Client %d disconnected, clean: %s" % [id, str(was_clean)])
-    else:
-        print("Client %d disconnected, clean: %s" % [id, str(was_clean)])
+        #print("Player Two with Client %d disconnected, clean: %s" % [id, str(was_clean)])
+    #else:
+        #print("Client %d disconnected, clean: %s" % [id, str(was_clean)])
 
 
 func _on_data(id):
-    # Print the received packet, you MUST always use get_peer(id).get_packet to receive data,
+    
+   # Print the received packet, you MUST always use get_peer(id).get_packet to receive data,
     # and not get_packet directly when not using the MultiplayerAPI.
     var pkt = _server.get_peer(id).get_packet()
-    print("Got data from client %d: %s ... echoing" % [id, pkt.get_string_from_utf8()])
+    #print("Got data from client %d: %s ... echoing" % [id, pkt.get_string_from_utf8()])
     
     var data = (JSON.parse(pkt.get_string_from_utf8())).get_result()
     #print(data)
-    # var player = data[0]
-    # var command = data[1]
-    #if(command == "UP"):
     if(data):
         for i in data:
-            print(i)
+            #print(i)
             if(i=="player_one"):
                 player_one_client_id = id
             if(i=="player_two"):
@@ -244,8 +242,13 @@ func _on_data(id):
                 pass
     if(next_step_player_one and next_step_player_two):
         unpause()
-        $RunTimer.start() 
-
+        #if($RunTimer.is_stopped()): # Used to show how much faster the game runs independent from realtime
+        #    $RunTimer.start() 
+        $PlayerOne.run(0.1)
+        $PlayerTwo.run(0.1)
+        ball.run(0.1)
+        timeout()
+        
 
 func get_return_value_as_utf8_JSON():
     var observation = {"PlayerOne":{"X":$PlayerOne.position.x,"Y":$PlayerOne.position.y}, "PlayerTwo":{"X":$PlayerTwo.position.x,"Y":$PlayerTwo.position.y}, "ball":ball.get_observation()}
@@ -255,32 +258,35 @@ func get_return_value_as_utf8_JSON():
 
 func _on_RunTimer_timeout():
     print("_RunTimer_timeout")
-    pause()
+    pass
     
+
+
+func timeout():
+    pause()  
     action_player_one.pressed = false
     action_player_two.pressed = false
     Input.parse_input_event(action_player_one)
     Input.parse_input_event(action_player_two)
     next_step_player_one = false
     next_step_player_two = false
-    
-    var return_value = get_return_value_as_utf8_JSON()
+    var return_value = get_return_value_as_utf8_JSON() # important to get the return values before resetting the reward
     reward_player_one = 0
     reward_player_two = 0
-    #print(return_value)
+    ##print(return_value)
     if(player_one_client_id):
         _server.get_peer(player_one_client_id).put_packet(return_value)
     if(player_two_client_id):
         _server.get_peer(player_two_client_id).put_packet(return_value)
 
 func pause():
-    print("pause")
+    #print("pause")
     ball.set_pause(true)
     $PlayerOne.set_pause(true)
     $PlayerTwo.set_pause(true)
     
 func unpause():
-    print("unpause")
+    #print("unpause")
     ball.set_pause(false)
     $PlayerOne.set_pause(false)
     $PlayerTwo.set_pause(false)

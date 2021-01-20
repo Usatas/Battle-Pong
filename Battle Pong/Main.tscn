@@ -86,7 +86,7 @@ position = Vector2( 0, 600 )
 
 [node name="RunTimer" type="Timer" parent="."]
 pause_mode = 2
-wait_time = 0.1
+wait_time = 0.01
 one_shot = true
 [connection signal="hit" from="PlayerTwo" to="." method="_on_PlayerTwo_hit"]
 [connection signal="hit" from="PlayerOne" to="." method="_on_PlayerOne_hit"]
