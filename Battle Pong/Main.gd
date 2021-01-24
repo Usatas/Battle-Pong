@@ -28,8 +28,12 @@ const P1_WIN = "Player 1 won!"
 const P2_WIN = "Player 2 won!"
 var message = SPACE_TO_PLAY
 
+export var learn_with_images = true
+export var playtime_per_step = 0.1
+
 func _ready():
-    VisualServer.render_loop_enabled = false # disable rendering to create a massive boost
+    if not learn_with_images:
+        VisualServer.render_loop_enabled = false # disable rendering to create a massive boost
     
     # Connect base signals to get notified of new client connections,
     # disconnections, and disconnect requests.
@@ -233,29 +237,62 @@ func _on_data(id):
                 next_step_player_two  = true
             if(i == "start_game"):
                 play()
-                var return_value = get_return_value_as_utf8_JSON()
+                var return_value = yield(get_return_value_as_utf8_JSON(), "completed")
                 _server.get_peer(id).put_packet(return_value)
                 pass
             if(i=="connect_player"):
-                var return_value = get_return_value_as_utf8_JSON()
+                var return_value = yield(get_return_value_as_utf8_JSON(), "completed")
                 _server.get_peer(id).put_packet(return_value)
                 pass
     if(next_step_player_one and next_step_player_two):
         unpause()
         #if($RunTimer.is_stopped()): # Used to show how much faster the game runs independent from realtime
         #    $RunTimer.start() 
-        $PlayerOne.run(0.1)
-        $PlayerTwo.run(0.1)
-        ball.run(0.1)
+        $PlayerOne.run(playtime_per_step)
+        $PlayerTwo.run(playtime_per_step)
+        ball.run(playtime_per_step)
         timeout()
         
-
 func get_return_value_as_utf8_JSON():
     var observation = {"PlayerOne":{"X":$PlayerOne.position.x,"Y":$PlayerOne.position.y}, "PlayerTwo":{"X":$PlayerTwo.position.x,"Y":$PlayerTwo.position.y}, "ball":ball.get_observation()}
-    var return_value = {"observation":observation, "reward":{"PlayerOne":reward_player_one, "PlayerTwo":reward_player_two}, "done":(not playing), "info":{"PlayerOneScore":score_player_one, "PlayerTwoScore":score_player_two}}
+    var screenshot = yield(get_screenshot(), "completed")
+    var return_value = {"observation":observation, "reward":{"PlayerOne":reward_player_one, "PlayerTwo":reward_player_two}, "done":(not playing), "info":{"PlayerOneScore":score_player_one, "PlayerTwoScore":score_player_two, "screenshot":screenshot}}
     return (JSON.print(return_value)).to_utf8()
 
 
+func get_screenshot():
+    if learn_with_images:
+        get_viewport().set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)
+        # Wait until the frame has finished before getting the texture.
+        yield(VisualServer, "frame_post_draw")
+
+        var thumbnail = get_viewport().get_texture().get_data()
+        thumbnail.flip_y()
+        # Create a texture for it.
+
+    
+        thumbnail.resize(100, 60 )
+        thumbnail.convert(Image.FORMAT_RGB8 ) # Farbe
+        #thumbnail.convert(Image.FORMAT_L8 ) # S/W
+        
+        #thumbnail.save_png('test.png') # Save Image as file - to debug
+
+        var array : PoolByteArray = thumbnail.get_data()
+        var sg_width = thumbnail.get_width()
+        var sg_height = thumbnail.get_height()
+        var sg_format = thumbnail.get_format()
+        var sg_u_size = array.size()
+        
+        var sg_saved_img = Marshalls.raw_to_base64(array)
+
+        var metadata = {"thumbnail" : {"image" : sg_saved_img, "size" : sg_u_size, "width" : sg_width, "height" : sg_height, "format" : sg_format}}
+        
+        return metadata
+    else:
+        var metadata = {"thumbnail" : {"image" : "disabled", "size" : 0, "width" : 0, "height" : 0, "format" : "diabled"}}
+        yield(get_tree().create_timer(0),"timeout") # Hack
+        return metadata
+        
 func _on_RunTimer_timeout():
     print("_RunTimer_timeout")
     pass
@@ -270,7 +307,7 @@ func timeout():
     Input.parse_input_event(action_player_two)
     next_step_player_one = false
     next_step_player_two = false
-    var return_value = get_return_value_as_utf8_JSON() # important to get the return values before resetting the reward
+    var return_value = yield(get_return_value_as_utf8_JSON(), "completed")
     reward_player_one = 0
     reward_player_two = 0
     ##print(return_value)
