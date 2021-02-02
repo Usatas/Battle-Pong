@@ -1,0 +1,435 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://SettingsWindow.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lbl_title" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -46.5
+margin_top = 20.0
+margin_right = 46.5
+margin_bottom = 14.0
+text = "Game Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -141.5
+margin_top = -181.0
+margin_right = 141.5
+margin_bottom = 181.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="grid_settings" type="GridContainer" parent="VBoxContainer"]
+margin_right = 344.0
+margin_bottom = 353.0
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vbox_game_settings" type="VBoxContainer" parent="VBoxContainer/grid_settings"]
+margin_right = 160.0
+margin_bottom = 105.0
+
+[node name="lbl_title_game_settings" type="Label" parent="VBoxContainer/grid_settings/vbox_game_settings"]
+margin_right = 160.0
+margin_bottom = 14.0
+text = "Game:"
+
+[node name="grid_game_settings" type="GridContainer" parent="VBoxContainer/grid_settings/vbox_game_settings"]
+margin_top = 18.0
+margin_right = 160.0
+margin_bottom = 105.0
+columns = 2
+
+[node name="lbl_game_playtime_per_step" type="Label" parent="VBoxContainer/grid_settings/vbox_game_settings/grid_game_settings"]
+margin_right = 89.0
+margin_bottom = 31.0
+text = "Playtime/Step
+(Seconds)"
+
+[node name="input_game_playtime_per_step" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_game_settings/grid_game_settings"]
+margin_left = 93.0
+margin_right = 151.0
+margin_bottom = 31.0
+
+[node name="lbl_game_wins_to_reset" type="Label" parent="VBoxContainer/grid_settings/vbox_game_settings/grid_game_settings"]
+margin_top = 40.0
+margin_right = 89.0
+margin_bottom = 54.0
+text = "Wins till end"
+
+[node name="input_game_wins_to_reset" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_game_settings/grid_game_settings"]
+margin_left = 93.0
+margin_top = 35.0
+margin_right = 151.0
+margin_bottom = 59.0
+align = 2
+
+[node name="lbl_game_port" type="Label" parent="VBoxContainer/grid_settings/vbox_game_settings/grid_game_settings"]
+margin_top = 68.0
+margin_right = 89.0
+margin_bottom = 82.0
+text = "Port"
+
+[node name="input_game_port" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_game_settings/grid_game_settings"]
+margin_left = 93.0
+margin_top = 63.0
+margin_right = 151.0
+margin_bottom = 87.0
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/grid_settings"]
+margin_left = 164.0
+margin_right = 168.0
+margin_bottom = 105.0
+
+[node name="vbox_image_settings" type="VBoxContainer" parent="VBoxContainer/grid_settings"]
+margin_left = 172.0
+margin_right = 344.0
+margin_bottom = 105.0
+
+[node name="lbl_title_image_settings" type="Label" parent="VBoxContainer/grid_settings/vbox_image_settings"]
+margin_right = 172.0
+margin_bottom = 14.0
+text = "Image:"
+
+[node name="grid_image_settings" type="GridContainer" parent="VBoxContainer/grid_settings/vbox_image_settings"]
+margin_top = 18.0
+margin_right = 172.0
+margin_bottom = 98.0
+columns = 2
+
+[node name="lbl_image_format" type="Label" parent="VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings"]
+margin_top = 5.0
+margin_right = 45.0
+margin_bottom = 19.0
+text = "Format"
+
+[node name="input_image_format" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings"]
+margin_left = 49.0
+margin_right = 107.0
+margin_bottom = 24.0
+hint_tooltip = "example: 
+RGB8
+L8
+https://docs.godotengine.org/en/stable/classes/class_image.html#enumerations"
+
+[node name="lbl_image_heigth" type="Label" parent="VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings"]
+margin_top = 33.0
+margin_right = 45.0
+margin_bottom = 47.0
+text = "Height"
+
+[node name="input_image_height" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings"]
+margin_left = 49.0
+margin_top = 28.0
+margin_right = 107.0
+margin_bottom = 52.0
+
+[node name="lbl_image_width" type="Label" parent="VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings"]
+margin_top = 61.0
+margin_right = 45.0
+margin_bottom = 75.0
+text = "Width"
+
+[node name="input_image_width" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings"]
+margin_left = 49.0
+margin_top = 56.0
+margin_right = 107.0
+margin_bottom = 80.0
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/grid_settings"]
+margin_top = 109.0
+margin_right = 160.0
+margin_bottom = 113.0
+
+[node name="HSeparator6" type="HSeparator" parent="VBoxContainer/grid_settings"]
+margin_left = 164.0
+margin_top = 109.0
+margin_right = 168.0
+margin_bottom = 113.0
+
+[node name="HSeparator5" type="HSeparator" parent="VBoxContainer/grid_settings"]
+margin_left = 172.0
+margin_top = 109.0
+margin_right = 344.0
+margin_bottom = 113.0
+
+[node name="vbox_trainer_settings" type="VBoxContainer" parent="VBoxContainer/grid_settings"]
+margin_top = 117.0
+margin_right = 160.0
+margin_bottom = 271.0
+
+[node name="lbl_title_trainer_settings" type="Label" parent="VBoxContainer/grid_settings/vbox_trainer_settings"]
+margin_right = 160.0
+margin_bottom = 14.0
+text = "Trainer:"
+
+[node name="grid_trainer_settings" type="GridContainer" parent="VBoxContainer/grid_settings/vbox_trainer_settings"]
+margin_top = 18.0
+margin_right = 160.0
+margin_bottom = 114.0
+columns = 2
+
+[node name="lbl_trainer_ip" type="Label" parent="VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings"]
+margin_top = 5.0
+margin_right = 52.0
+margin_bottom = 19.0
+text = "IP"
+
+[node name="input_trainer_ip" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings"]
+margin_left = 56.0
+margin_right = 160.0
+margin_bottom = 24.0
+
+[node name="lbl_trainer_port" type="Label" parent="VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings"]
+margin_top = 33.0
+margin_right = 52.0
+margin_bottom = 47.0
+text = "Port"
+
+[node name="input_trainer_port" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings"]
+margin_left = 56.0
+margin_top = 28.0
+margin_right = 160.0
+margin_bottom = 52.0
+
+[node name="lbl_trainer_position" type="Label" parent="VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings"]
+margin_top = 69.0
+margin_right = 52.0
+margin_bottom = 83.0
+text = "Position"
+
+[node name="input_trainer_position" type="CheckButton" parent="VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings"]
+margin_left = 56.0
+margin_top = 56.0
+margin_right = 160.0
+margin_bottom = 96.0
+text = "Left"
+
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/grid_settings"]
+margin_left = 164.0
+margin_top = 117.0
+margin_right = 168.0
+margin_bottom = 271.0
+
+[node name="vbox_ball_settings" type="VBoxContainer" parent="VBoxContainer/grid_settings"]
+margin_left = 172.0
+margin_top = 117.0
+margin_right = 344.0
+margin_bottom = 271.0
+
+[node name="lbl_title_ball_settings" type="Label" parent="VBoxContainer/grid_settings/vbox_ball_settings"]
+margin_right = 172.0
+margin_bottom = 14.0
+text = "Ball:"
+
+[node name="grid_ball_settings" type="GridContainer" parent="VBoxContainer/grid_settings/vbox_ball_settings"]
+margin_top = 18.0
+margin_right = 172.0
+margin_bottom = 154.0
+columns = 2
+
+[node name="lbl_ball_height" type="Label" parent="VBoxContainer/grid_settings/vbox_ball_settings/grid_ball_settings"]
+margin_top = 5.0
+margin_right = 110.0
+margin_bottom = 19.0
+text = "Hight"
+
+[node name="input_ball_height" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_ball_settings/grid_ball_settings"]
+margin_left = 114.0
+margin_right = 172.0
+margin_bottom = 24.0
+
+[node name="lbl_ball_width" type="Label" parent="VBoxContainer/grid_settings/vbox_ball_settings/grid_ball_settings"]
+margin_top = 33.0
+margin_right = 110.0
+margin_bottom = 47.0
+text = "Width"
+
+[node name="input_ball_width" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_ball_settings/grid_ball_settings"]
+margin_left = 114.0
+margin_top = 28.0
+margin_right = 172.0
+margin_bottom = 52.0
+
+[node name="lbl_ball_speed_min" type="Label" parent="VBoxContainer/grid_settings/vbox_ball_settings/grid_ball_settings"]
+margin_top = 61.0
+margin_right = 110.0
+margin_bottom = 75.0
+text = "Speed Min"
+
+[node name="input_ball_speed_min" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_ball_settings/grid_ball_settings"]
+margin_left = 114.0
+margin_top = 56.0
+margin_right = 172.0
+margin_bottom = 80.0
+
+[node name="lbl_ball_speed_max" type="Label" parent="VBoxContainer/grid_settings/vbox_ball_settings/grid_ball_settings"]
+margin_top = 89.0
+margin_right = 110.0
+margin_bottom = 103.0
+text = "Speed Max"
+
+[node name="input_ball_speed_max" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_ball_settings/grid_ball_settings"]
+margin_left = 114.0
+margin_top = 84.0
+margin_right = 172.0
+margin_bottom = 108.0
+
+[node name="lbl_ball_speed_increment" type="Label" parent="VBoxContainer/grid_settings/vbox_ball_settings/grid_ball_settings"]
+margin_top = 117.0
+margin_right = 110.0
+margin_bottom = 131.0
+text = "Speed Increment"
+
+[node name="input_ball_speed_increment" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_ball_settings/grid_ball_settings"]
+margin_left = 114.0
+margin_top = 112.0
+margin_right = 172.0
+margin_bottom = 136.0
+
+[node name="HSeparator7" type="HSeparator" parent="VBoxContainer/grid_settings"]
+margin_top = 275.0
+margin_right = 160.0
+margin_bottom = 279.0
+
+[node name="VSeparator3" type="HSeparator" parent="VBoxContainer/grid_settings"]
+margin_left = 164.0
+margin_top = 275.0
+margin_right = 168.0
+margin_bottom = 279.0
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/grid_settings"]
+margin_left = 172.0
+margin_top = 275.0
+margin_right = 344.0
+margin_bottom = 279.0
+
+[node name="vbox_player_one_settings" type="VBoxContainer" parent="VBoxContainer/grid_settings"]
+margin_top = 283.0
+margin_right = 160.0
+margin_bottom = 353.0
+
+[node name="lbl_title_player_one_settings" type="Label" parent="VBoxContainer/grid_settings/vbox_player_one_settings"]
+margin_right = 160.0
+margin_bottom = 14.0
+text = "Player 1:"
+
+[node name="grid_player_one_settings" type="GridContainer" parent="VBoxContainer/grid_settings/vbox_player_one_settings"]
+margin_top = 18.0
+margin_right = 160.0
+margin_bottom = 70.0
+columns = 2
+
+[node name="lbl_player_one_length" type="Label" parent="VBoxContainer/grid_settings/vbox_player_one_settings/grid_player_one_settings"]
+margin_top = 5.0
+margin_right = 43.0
+margin_bottom = 19.0
+text = "Length"
+
+[node name="input_player_one_length" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_player_one_settings/grid_player_one_settings"]
+margin_left = 47.0
+margin_right = 105.0
+margin_bottom = 24.0
+
+[node name="lbl_player_one_speed" type="Label" parent="VBoxContainer/grid_settings/vbox_player_one_settings/grid_player_one_settings"]
+margin_top = 33.0
+margin_right = 43.0
+margin_bottom = 47.0
+text = "Speed"
+
+[node name="input_player_one_speed" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_player_one_settings/grid_player_one_settings"]
+margin_left = 47.0
+margin_top = 28.0
+margin_right = 105.0
+margin_bottom = 52.0
+
+[node name="VSeparator4" type="VSeparator" parent="VBoxContainer/grid_settings"]
+margin_left = 164.0
+margin_top = 283.0
+margin_right = 168.0
+margin_bottom = 353.0
+
+[node name="vbox_player_two_settings" type="VBoxContainer" parent="VBoxContainer/grid_settings"]
+margin_left = 172.0
+margin_top = 283.0
+margin_right = 344.0
+margin_bottom = 353.0
+
+[node name="lbl_title_player_two_settings" type="Label" parent="VBoxContainer/grid_settings/vbox_player_two_settings"]
+margin_right = 172.0
+margin_bottom = 14.0
+text = "Player 2:"
+
+[node name="grid_player_two_settings" type="GridContainer" parent="VBoxContainer/grid_settings/vbox_player_two_settings"]
+margin_top = 18.0
+margin_right = 172.0
+margin_bottom = 70.0
+columns = 2
+
+[node name="lbl_player_two_length" type="Label" parent="VBoxContainer/grid_settings/vbox_player_two_settings/grid_player_two_settings"]
+margin_top = 5.0
+margin_right = 43.0
+margin_bottom = 19.0
+text = "Length"
+
+[node name="input_player_two_length" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_player_two_settings/grid_player_two_settings"]
+margin_left = 47.0
+margin_right = 105.0
+margin_bottom = 24.0
+
+[node name="lbl_player_two_speed" type="Label" parent="VBoxContainer/grid_settings/vbox_player_two_settings/grid_player_two_settings"]
+margin_top = 33.0
+margin_right = 43.0
+margin_bottom = 47.0
+text = "Speed"
+
+[node name="input_player_two_speed" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_player_two_settings/grid_player_two_settings"]
+margin_left = 47.0
+margin_top = 28.0
+margin_right = 105.0
+margin_bottom = 52.0
+
+[node name="VSeparator5" type="HSeparator" parent="VBoxContainer"]
+margin_top = 357.0
+margin_right = 344.0
+margin_bottom = 361.0
+
+[node name="but_save" type="Button" parent="VBoxContainer"]
+margin_top = 365.0
+margin_right = 344.0
+margin_bottom = 385.0
+text = "Save"
+
+[node name="but_cancel" type="Button" parent="VBoxContainer"]
+margin_top = 389.0
+margin_right = 344.0
+margin_bottom = 409.0
+text = "Cancel"
+
+[node name="but_reset" type="Button" parent="VBoxContainer"]
+margin_top = 413.0
+margin_right = 344.0
+margin_bottom = 433.0
+text = "Reset"
+[connection signal="pressed" from="VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_position" to="." method="_on_input_trainer_position_pressed"]
+[connection signal="pressed" from="VBoxContainer/but_save" to="." method="_on_but_save_pressed"]
+[connection signal="pressed" from="VBoxContainer/but_cancel" to="." method="_on_but_cancel_pressed"]
+[connection signal="pressed" from="VBoxContainer/but_reset" to="." method="_on_but_reset_pressed"]

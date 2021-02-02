@@ -14,6 +14,7 @@ __meta__ = {
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -75.5
+margin_top = 20.0
 margin_right = 75.5
 margin_bottom = 14.0
 text = "Battle Pong"
@@ -86,9 +87,29 @@ margin_top = 116.0
 margin_right = 265.0
 margin_bottom = 136.0
 text = "RE Trainer with Position"
+
+[node name="but_settings" type="Button" parent="vbox_two_learner"]
+margin_top = 140.0
+margin_right = 265.0
+margin_bottom = 160.0
+text = "Settings"
+
+[node name="lbl_game_running" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -93.5
+margin_top = 59.0
+margin_right = 93.5
+margin_bottom = 73.0
+text = "Game runs without rendering"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="vbox_two_learner/but_local_two_player" to="." method="_on_but_local_two_player_pressed"]
 [connection signal="pressed" from="vbox_two_learner/but_two_re_with_images" to="." method="_on_but_two_re_with_images_pressed"]
 [connection signal="pressed" from="vbox_two_learner/HBoxContainer/but_two_re_with_position" to="." method="_on_but_two_re_with_position_pressed"]
 [connection signal="pressed" from="vbox_two_learner/HBoxContainer/cb_rendering_enabled" to="." method="_on_cb_rendering_enabled_pressed"]
 [connection signal="pressed" from="vbox_two_learner/but_trainer_with_images" to="." method="_on_but_trainer_with_images_pressed"]
 [connection signal="pressed" from="vbox_two_learner/but_trainer_with_position" to="." method="_on_but_trainer_with_position_pressed"]
+[connection signal="pressed" from="vbox_two_learner/but_settings" to="." method="_on_but_settings_pressed"]

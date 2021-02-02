@@ -28,11 +28,16 @@ const P1_WIN = "Player 1 won!"
 const P2_WIN = "Player 2 won!"
 var message = SPACE_TO_PLAY
 
-export var enable_rendering = true
-export var learn_with_images = true
-export var playtime_per_step = 0.1
+var enable_rendering = true
+var learn_with_images = true
+var game_playtime_per_step = 0.1
+var max_wins = 21
 
 func _ready():
+    enable_rendering = $"/root/GameSettings".rendering_enabled
+    learn_with_images = $"/root/GameSettings".learn_with_images
+    game_playtime_per_step = $"/root/GameSettings".game_playtime_per_step
+    max_wins = $"/root/GameSettings".game_wins_to_reset
     if not enable_rendering:
         VisualServer.render_loop_enabled = false # disable rendering to create a massive boost
     if learn_with_images:
@@ -148,7 +153,7 @@ func reset_paddle_positions():
 
 func handle_game_end():
     if game_done:
-        if score_player_one == 5:
+        if score_player_one >= max_wins:
             message = P1_WIN
         else:
             message = P2_WIN
@@ -251,9 +256,9 @@ func _on_data(id):
                 pass
     if(next_step_player_one and next_step_player_two):
         unpause()
-        $PlayerOne.run(playtime_per_step)
-        $PlayerTwo.run(playtime_per_step)
-        ball.run(playtime_per_step)
+        $PlayerOne.run(game_playtime_per_step)
+        $PlayerTwo.run(game_playtime_per_step)
+        ball.run(game_playtime_per_step)
         timeout()
         
 func get_observarion():
