@@ -127,29 +127,29 @@ func reset_data():
     update_settings()
     
 func update_settings():
-    game_playtime_per_step = str(data["game"]["playtime_per_step"])
-    game_wins_to_reset = str(data["game"]["wins_to_reset"])
-    game_port= str(data["game"]["port"])
+    game_playtime_per_step = data["game"]["playtime_per_step"] as float
+    game_wins_to_reset = data["game"]["wins_to_reset"] as int
+    game_port= data["game"]["port"] as int
 
     image_format = data["image"]["format"]
-    image_heigth = str(data["image"]["height"])
-    image_width = str(data["image"]["width"])
+    image_heigth = data["image"]["height"] as int
+    image_width = data["image"]["width"] as int
 
     trainer_ip = data["trainer"]["ip"]
-    trainer_port = str(data["trainer"]["port"])
+    trainer_port = data["trainer"]["port"] as int
     trainer_position = data["trainer"]["position"]
     
 
-    ball_height = str(data["ball"]["height"])
-    ball_width = str(data["ball"]["width"])
-    ball_speed_min = str(data["ball"]["speed_min"])
-    ball_speed_max = str(data["ball"]["speed_max"])
-    ball_speed_increment = str(data["ball"]["speed_increment"])
+    ball_height =data["ball"]["height"] as int
+    ball_width = data["ball"]["width"] as int
+    ball_speed_min = data["ball"]["speed_min"] as int
+    ball_speed_max = data["ball"]["speed_max"] as int 
+    ball_speed_increment = data["ball"]["speed_increment"] as int
 
-    player_one_length = str(data["player_one"]["length"])
-    player_one_speed = str(data["player_one"]["speed"])
+    player_one_length = data["player_one"]["length"] as int
+    player_one_speed = data["player_one"]["speed"] as int
 
-    player_two_length = str(data["player_two"]["length"])
-    player_two_speed = str(data["player_two"]["speed"])
+    player_two_length = data["player_two"]["length"] as int
+    player_two_speed = data["player_two"]["speed"] as int
 
 
