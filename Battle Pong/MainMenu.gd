@@ -52,6 +52,7 @@ func _on_but_trainer_with_images_pressed():
     $"/root/GameSettings".rendering_enabled = true
     $"/root/GameSettings".learn_with_images = true
     $"/root/GameSettings".trainings_mode_enabled = true
+    get_tree().change_scene("res://Main.tscn")
    
 
 
@@ -59,6 +60,7 @@ func _on_but_trainer_with_position_pressed():
     $"/root/GameSettings".rendering_enabled = true
     $"/root/GameSettings".learn_with_images = false
     $"/root/GameSettings".trainings_mode_enabled = true
+    get_tree().change_scene("res://Main.tscn")
 
 
 

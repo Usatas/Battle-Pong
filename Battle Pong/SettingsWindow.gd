@@ -21,15 +21,15 @@ func update_gui():
     $VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings/input_image_height.text = str($"/root/GameSettings".image_heigth)
     $VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings/input_image_width.text = str($"/root/GameSettings".image_width)
 
-    $VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_ip.text = $"/root/GameSettings".trainer_ip
-    $VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_port.text = str($"/root/GameSettings".trainer_port)
-    if $"/root/GameSettings".trainer_position =="Left":
-        $VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_position.pressed = false
-    elif $"/root/GameSettings".trainer_position =="Right":
-        $VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_position.pressed = true
+    #$VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_ip.text = $"/root/GameSettings".trainer_ip
+    #$VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_port.text = str($"/root/GameSettings".trainer_port)
+    #if $"/root/GameSettings".trainer_position =="Left":
+    #    $VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_position.pressed = false
+    #elif $"/root/GameSettings".trainer_position =="Right":
+    #    $VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_position.pressed = true
     
-    $VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_position.text = $"/root/GameSettings".trainer_position
-    
+    #$VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_position.text = $"/root/GameSettings".trainer_position
+    $VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_realtime_enabled.pressed = $"/root/GameSettings".trainer_realtime_enabled
 
     $VBoxContainer/grid_settings/vbox_ball_settings/grid_ball_settings/input_ball_height.text = str($"/root/GameSettings".ball_height)
     $VBoxContainer/grid_settings/vbox_ball_settings/grid_ball_settings/input_ball_width.text = str($"/root/GameSettings".ball_width)
@@ -61,9 +61,10 @@ func _on_but_save_pressed():
     $"/root/GameSettings".image_heigth = $VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings/input_image_height.text as int
     $"/root/GameSettings".image_width = $VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings/input_image_width.text as int
 
-    $"/root/GameSettings".trainer_ip = $VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_ip.text
-    $"/root/GameSettings".trainer_port = $VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_port.text as int
+    #$"/root/GameSettings".trainer_ip = $VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_ip.text
+    #$"/root/GameSettings".trainer_port = $VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_port.text as int
     $"/root/GameSettings".trainer_position = $VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_position.text
+    $"/root/GameSettings".trainer_realtime_enabled = $VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_realtime_enabled.pressed
 
     $"/root/GameSettings".ball_height = $VBoxContainer/grid_settings/vbox_ball_settings/grid_ball_settings/input_ball_height.text as int
     $"/root/GameSettings".ball_width = $VBoxContainer/grid_settings/vbox_ball_settings/grid_ball_settings/input_ball_width.text as int

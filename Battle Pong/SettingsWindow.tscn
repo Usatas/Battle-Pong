@@ -36,7 +36,7 @@ __meta__ = {
 }
 
 [node name="grid_settings" type="GridContainer" parent="VBoxContainer"]
-margin_right = 344.0
+margin_right = 347.0
 margin_bottom = 353.0
 columns = 3
 __meta__ = {
@@ -44,17 +44,17 @@ __meta__ = {
 }
 
 [node name="vbox_game_settings" type="VBoxContainer" parent="VBoxContainer/grid_settings"]
-margin_right = 160.0
+margin_right = 163.0
 margin_bottom = 105.0
 
 [node name="lbl_title_game_settings" type="Label" parent="VBoxContainer/grid_settings/vbox_game_settings"]
-margin_right = 160.0
+margin_right = 163.0
 margin_bottom = 14.0
 text = "Game:"
 
 [node name="grid_game_settings" type="GridContainer" parent="VBoxContainer/grid_settings/vbox_game_settings"]
 margin_top = 18.0
-margin_right = 160.0
+margin_right = 163.0
 margin_bottom = 105.0
 columns = 2
 
@@ -95,13 +95,13 @@ margin_right = 151.0
 margin_bottom = 87.0
 
 [node name="VSeparator" type="VSeparator" parent="VBoxContainer/grid_settings"]
-margin_left = 164.0
-margin_right = 168.0
+margin_left = 167.0
+margin_right = 171.0
 margin_bottom = 105.0
 
 [node name="vbox_image_settings" type="VBoxContainer" parent="VBoxContainer/grid_settings"]
-margin_left = 172.0
-margin_right = 344.0
+margin_left = 175.0
+margin_right = 347.0
 margin_bottom = 105.0
 
 [node name="lbl_title_image_settings" type="Label" parent="VBoxContainer/grid_settings/vbox_image_settings"]
@@ -156,83 +156,95 @@ margin_bottom = 80.0
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/grid_settings"]
 margin_top = 109.0
-margin_right = 160.0
+margin_right = 163.0
 margin_bottom = 113.0
 
 [node name="HSeparator6" type="HSeparator" parent="VBoxContainer/grid_settings"]
-margin_left = 164.0
+margin_left = 167.0
 margin_top = 109.0
-margin_right = 168.0
+margin_right = 171.0
 margin_bottom = 113.0
 
 [node name="HSeparator5" type="HSeparator" parent="VBoxContainer/grid_settings"]
-margin_left = 172.0
+margin_left = 175.0
 margin_top = 109.0
-margin_right = 344.0
+margin_right = 347.0
 margin_bottom = 113.0
 
 [node name="vbox_trainer_settings" type="VBoxContainer" parent="VBoxContainer/grid_settings"]
 margin_top = 117.0
-margin_right = 160.0
+margin_right = 163.0
 margin_bottom = 271.0
 
 [node name="lbl_title_trainer_settings" type="Label" parent="VBoxContainer/grid_settings/vbox_trainer_settings"]
-margin_right = 160.0
+margin_right = 163.0
 margin_bottom = 14.0
 text = "Trainer:"
 
 [node name="grid_trainer_settings" type="GridContainer" parent="VBoxContainer/grid_settings/vbox_trainer_settings"]
 margin_top = 18.0
-margin_right = 160.0
-margin_bottom = 114.0
+margin_right = 163.0
+margin_bottom = 58.0
 columns = 2
 
 [node name="lbl_trainer_ip" type="Label" parent="VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings"]
-margin_top = 5.0
-margin_right = 52.0
-margin_bottom = 19.0
+visible = false
+margin_right = 104.0
+margin_bottom = 14.0
 text = "IP"
 
 [node name="input_trainer_ip" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings"]
+visible = false
 margin_left = 56.0
 margin_right = 160.0
 margin_bottom = 24.0
 
 [node name="lbl_trainer_port" type="Label" parent="VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings"]
-margin_top = 33.0
+visible = false
+margin_top = 5.0
 margin_right = 52.0
-margin_bottom = 47.0
+margin_bottom = 19.0
 text = "Port"
 
 [node name="input_trainer_port" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings"]
-margin_left = 56.0
-margin_top = 28.0
-margin_right = 160.0
-margin_bottom = 52.0
+visible = false
+margin_right = 104.0
+margin_bottom = 24.0
 
 [node name="lbl_trainer_position" type="Label" parent="VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings"]
-margin_top = 69.0
-margin_right = 52.0
-margin_bottom = 83.0
+visible = false
+margin_top = 13.0
+margin_right = 83.0
+margin_bottom = 27.0
 text = "Position"
 
 [node name="input_trainer_position" type="CheckButton" parent="VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings"]
-margin_left = 56.0
-margin_top = 56.0
-margin_right = 160.0
-margin_bottom = 96.0
+visible = false
+margin_right = 104.0
+margin_bottom = 40.0
 text = "Left"
 
+[node name="lbl_trainer_realtime_enabled" type="Label" parent="VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings"]
+margin_top = 13.0
+margin_right = 83.0
+margin_bottom = 27.0
+text = "Use realtime"
+
+[node name="input_trainer_realtime_enabled" type="CheckButton" parent="VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings"]
+margin_left = 87.0
+margin_right = 163.0
+margin_bottom = 40.0
+
 [node name="VSeparator2" type="VSeparator" parent="VBoxContainer/grid_settings"]
-margin_left = 164.0
+margin_left = 167.0
 margin_top = 117.0
-margin_right = 168.0
+margin_right = 171.0
 margin_bottom = 271.0
 
 [node name="vbox_ball_settings" type="VBoxContainer" parent="VBoxContainer/grid_settings"]
-margin_left = 172.0
+margin_left = 175.0
 margin_top = 117.0
-margin_right = 344.0
+margin_right = 347.0
 margin_bottom = 271.0
 
 [node name="lbl_title_ball_settings" type="Label" parent="VBoxContainer/grid_settings/vbox_ball_settings"]
@@ -307,34 +319,34 @@ margin_bottom = 136.0
 
 [node name="HSeparator7" type="HSeparator" parent="VBoxContainer/grid_settings"]
 margin_top = 275.0
-margin_right = 160.0
+margin_right = 163.0
 margin_bottom = 279.0
 
 [node name="VSeparator3" type="HSeparator" parent="VBoxContainer/grid_settings"]
-margin_left = 164.0
+margin_left = 167.0
 margin_top = 275.0
-margin_right = 168.0
+margin_right = 171.0
 margin_bottom = 279.0
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer/grid_settings"]
-margin_left = 172.0
+margin_left = 175.0
 margin_top = 275.0
-margin_right = 344.0
+margin_right = 347.0
 margin_bottom = 279.0
 
 [node name="vbox_player_one_settings" type="VBoxContainer" parent="VBoxContainer/grid_settings"]
 margin_top = 283.0
-margin_right = 160.0
+margin_right = 163.0
 margin_bottom = 353.0
 
 [node name="lbl_title_player_one_settings" type="Label" parent="VBoxContainer/grid_settings/vbox_player_one_settings"]
-margin_right = 160.0
+margin_right = 163.0
 margin_bottom = 14.0
 text = "Player 1:"
 
 [node name="grid_player_one_settings" type="GridContainer" parent="VBoxContainer/grid_settings/vbox_player_one_settings"]
 margin_top = 18.0
-margin_right = 160.0
+margin_right = 163.0
 margin_bottom = 70.0
 columns = 2
 
@@ -362,15 +374,15 @@ margin_right = 105.0
 margin_bottom = 52.0
 
 [node name="VSeparator4" type="VSeparator" parent="VBoxContainer/grid_settings"]
-margin_left = 164.0
+margin_left = 167.0
 margin_top = 283.0
-margin_right = 168.0
+margin_right = 171.0
 margin_bottom = 353.0
 
 [node name="vbox_player_two_settings" type="VBoxContainer" parent="VBoxContainer/grid_settings"]
-margin_left = 172.0
+margin_left = 175.0
 margin_top = 283.0
-margin_right = 344.0
+margin_right = 347.0
 margin_bottom = 353.0
 
 [node name="lbl_title_player_two_settings" type="Label" parent="VBoxContainer/grid_settings/vbox_player_two_settings"]
@@ -409,24 +421,24 @@ margin_bottom = 52.0
 
 [node name="VSeparator5" type="HSeparator" parent="VBoxContainer"]
 margin_top = 357.0
-margin_right = 344.0
+margin_right = 347.0
 margin_bottom = 361.0
 
 [node name="but_save" type="Button" parent="VBoxContainer"]
 margin_top = 365.0
-margin_right = 344.0
+margin_right = 347.0
 margin_bottom = 385.0
 text = "Save"
 
 [node name="but_cancel" type="Button" parent="VBoxContainer"]
 margin_top = 389.0
-margin_right = 344.0
+margin_right = 347.0
 margin_bottom = 409.0
 text = "Cancel"
 
 [node name="but_reset" type="Button" parent="VBoxContainer"]
 margin_top = 413.0
-margin_right = 344.0
+margin_right = 347.0
 margin_bottom = 433.0
 text = "Reset"
 [connection signal="pressed" from="VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_position" to="." method="_on_input_trainer_position_pressed"]

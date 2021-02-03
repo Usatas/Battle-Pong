@@ -16,6 +16,7 @@ var image_width
 var trainer_ip
 var trainer_port
 var trainer_position
+var trainer_realtime_enabled
 
 var ball_height
 var ball_width
@@ -45,7 +46,8 @@ var default_data = {
     "trainer":{
         "ip":"127.0.0.1",
         "port":"9080",
-        "position":"Right"
+        "position":"Right",
+        "realtime_enabled":true
        },
     "ball":{
         "height":30,
@@ -99,7 +101,8 @@ func save_data():
         "trainer":{
             "ip":$"/root/GameSettings".trainer_ip,
             "port":$"/root/GameSettings".trainer_port,
-            "position":$"/root/GameSettings".trainer_position
+            "position":$"/root/GameSettings".trainer_position,
+            "realtime_enabled":$"/root/GameSettings".trainer_realtime_enabled
         },
         "ball":{
             "height":$"/root/GameSettings".ball_height,
@@ -139,7 +142,7 @@ func update_settings():
     trainer_ip = data["trainer"]["ip"]
     trainer_port = data["trainer"]["port"] as int
     trainer_position = data["trainer"]["position"]
-    
+    trainer_realtime_enabled = data["trainer"]["realtime_enabled"] as bool
 
     ball_height =data["ball"]["height"] as int
     ball_width = data["ball"]["width"] as int

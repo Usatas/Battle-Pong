@@ -7,10 +7,15 @@ var _server = WebSocketServer.new()
 var player_one_client_id
 var player_two_client_id
 
+
+
 var action_player_one =  InputEventAction.new()
 var next_step_player_one = false
+var action_trainer_one = ""
+
 var action_player_two =  InputEventAction.new()
 var next_step_player_two = false
+var action_trainer_two = ""
 
 var Ball = preload("Ball.tscn")
 var ball = Ball.instance()
@@ -56,11 +61,11 @@ func _ready():
     # in a loop for each connected peer.
     _server.connect("data_received", self, "_on_data")
     # Start listening on the given port.
-    var err = _server.listen(PORT)
-    if err != OK:
+    var server_err = _server.listen(PORT)
+    if server_err != OK:
         print("Unable to start server")
         set_process(false)
-        
+
     set_ball()
     $PlayerOne.start($StartPositionPlayerOne.position)
     $PlayerTwo.start($StartPositionPlayerTwo.position)
@@ -89,7 +94,7 @@ func _process(delta):
     # Call this in _process or _physics_process.
     # Data transfer, and signals emission will only happen when calling this function.
     _server.poll()
-
+        
     check_point_scored()
     handle_score_event()
     handle_game_end()
@@ -172,8 +177,6 @@ func _on_PlayerOne_hit():
     pass # Replace with function body.
 
 
-
-
 func _connected(id, proto):
     # This is called when a new peer connects, "id" will be the assigned peer id,
     # "proto" will be the selected WebSocket sub-protocol (which is optional)
@@ -193,12 +196,8 @@ func _disconnected(id, was_clean = false):
     if( player_one_client_id == id ):
         player_one_client_id = null
         #print("Player One with Client %d disconnected, clean: %s" % [id, str(was_clean)])
-    if(player_two_client_id== id):
+    if(player_two_client_id == id):
         player_two_client_id = null
-        #print("Player Two with Client %d disconnected, clean: %s" % [id, str(was_clean)])
-    #else:
-        #print("Client %d disconnected, clean: %s" % [id, str(was_clean)])
-
 
 func _on_data(id):
     
@@ -208,7 +207,7 @@ func _on_data(id):
     #print("Got data from client %d: %s ... echoing" % [id, pkt.get_string_from_utf8()])
     
     var data = (JSON.parse(pkt.get_string_from_utf8())).get_result()
-    #print(data)
+    print(data)
     if(data):
         for i in data:
             #print(i)
@@ -254,14 +253,33 @@ func _on_data(id):
                     return_value = get_return_value_as_utf8_JSON()
                 _server.get_peer(id).put_packet(return_value)
                 pass
-    if($"/root/GameSettings".trainings_mode_enabled):
-        if(($"/root/GameSettings".trainer_position == "Left" and next_step_player_two) or ($"/root/GameSettings".trainer_position == "Right" and next_step_player_one)):
-            unpause()
-            $PlayerOne.run(game_playtime_per_step)
-            $PlayerTwo.run(game_playtime_per_step)
-            ball.run(game_playtime_per_step)
-            timeout()
-    elif(next_step_player_one and next_step_player_two):
+            if($"/root/GameSettings".trainings_mode_enabled):
+                if(i=="player_one_training"):
+                    next_step_player_one = true
+                    # is w pressed => up
+                    #elif is s pressed => down
+                    # else => nothing
+                    if(Input.is_action_pressed("player_one_up")):
+                        action_trainer_one = "up"
+                    elif Input.is_action_pressed("player_one_down"):
+                        action_trainer_one = "down"
+                    else:
+                        action_trainer_one = "nothing"
+                if(i=="player_two_training"):
+                    next_step_player_two = true
+                    # is arrow_up pressed => up
+                    #elif is arrow_down pressed => down
+                    # else => nothing          
+                    if(Input.is_action_pressed("player_two_up")):
+                        action_trainer_two = "up"
+                    elif Input.is_action_pressed("player_two_down"):
+                        action_trainer_two = "down"
+                    else:
+                        action_trainer_two = "nothing"          
+                        
+    if(next_step_player_one and next_step_player_two):
+        if($"/root/GameSettings".trainer_realtime_enabled):
+            yield(get_tree().create_timer(game_playtime_per_step), "timeout")
         unpause()
         $PlayerOne.run(game_playtime_per_step)
         $PlayerTwo.run(game_playtime_per_step)
@@ -270,7 +288,7 @@ func _on_data(id):
     
         
 func get_observarion():
-    return {"PlayerOne":{"X":$PlayerOne.position.x,"Y":$PlayerOne.position.y}, "PlayerTwo":{"X":$PlayerTwo.position.x,"Y":$PlayerTwo.position.y}, "ball":ball.get_observation()}
+    return {"PlayerOne":{"X":$PlayerOne.position.x,"Y":$PlayerOne.position.y, "TrainingAction":action_trainer_one}, "PlayerTwo":{"X":$PlayerTwo.position.x,"Y":$PlayerTwo.position.y, "TrainingAction":action_trainer_two}, "ball":ball.get_observation()}
         
 func get_return_value_as_utf8_JSON():
     var observation = get_observarion()
@@ -330,6 +348,7 @@ func timeout():
     if(player_two_client_id):
         _server.get_peer(player_two_client_id).put_packet(return_value)
 
+    
 func pause():
     #print("pause")
     ball.set_pause(true)
@@ -341,9 +360,3 @@ func unpause():
     ball.set_pause(false)
     $PlayerOne.set_pause(false)
     $PlayerTwo.set_pause(false)
-
-
-# Wenn Trainerfunktion aktiv ist wird für einen menschlichen Spieler der Playtimer gestartet und die Eingabe  
-func _on_Playtimer_timeout():
-    
-    pass # Replace with function body.

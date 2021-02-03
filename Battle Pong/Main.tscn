@@ -27,8 +27,13 @@ __meta__ = {
 }
 
 [node name="DisplayMessage" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 388.214
+margin_top = 43.0813
+margin_right = 638.214
+margin_bottom = 73.0813
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -79,9 +84,5 @@ __meta__ = {
 
 [node name="WallBottom" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 600 )
-
-[node name="Playtimer" type="Timer" parent="."]
-one_shot = true
 [connection signal="hit" from="PlayerTwo" to="." method="_on_PlayerTwo_hit"]
 [connection signal="hit" from="PlayerOne" to="." method="_on_PlayerOne_hit"]
-[connection signal="timeout" from="Playtimer" to="." method="_on_Playtimer_timeout"]
