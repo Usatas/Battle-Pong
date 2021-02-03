@@ -27,8 +27,13 @@ __meta__ = {
 }
 
 [node name="DisplayMessage" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 388.214
+margin_top = 43.0813
+margin_right = 638.214
+margin_bottom = 73.0813
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
