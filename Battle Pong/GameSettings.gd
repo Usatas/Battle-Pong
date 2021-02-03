@@ -2,6 +2,7 @@ extends Node
 
 export var rendering_enabled = false
 export var learn_with_images = true
+export var trainings_mode_enabled = false
 
 
 var game_playtime_per_step

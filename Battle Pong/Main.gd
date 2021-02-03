@@ -254,12 +254,20 @@ func _on_data(id):
                     return_value = get_return_value_as_utf8_JSON()
                 _server.get_peer(id).put_packet(return_value)
                 pass
-    if(next_step_player_one and next_step_player_two):
+    if($"/root/GameSettings".trainings_mode_enabled):
+        if(($"/root/GameSettings".trainer_position == "Left" and next_step_player_two) or ($"/root/GameSettings".trainer_position == "Right" and next_step_player_one)):
+            unpause()
+            $PlayerOne.run(game_playtime_per_step)
+            $PlayerTwo.run(game_playtime_per_step)
+            ball.run(game_playtime_per_step)
+            timeout()
+    elif(next_step_player_one and next_step_player_two):
         unpause()
         $PlayerOne.run(game_playtime_per_step)
         $PlayerTwo.run(game_playtime_per_step)
         ball.run(game_playtime_per_step)
         timeout()
+    
         
 func get_observarion():
     return {"PlayerOne":{"X":$PlayerOne.position.x,"Y":$PlayerOne.position.y}, "PlayerTwo":{"X":$PlayerTwo.position.x,"Y":$PlayerTwo.position.y}, "ball":ball.get_observation()}
@@ -334,3 +342,8 @@ func unpause():
     $PlayerOne.set_pause(false)
     $PlayerTwo.set_pause(false)
 
+
+# Wenn Trainerfunktion aktiv ist wird für einen menschlichen Spieler der Playtimer gestartet und die Eingabe  
+func _on_Playtimer_timeout():
+    
+    pass # Replace with function body.

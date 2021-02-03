@@ -79,5 +79,9 @@ __meta__ = {
 
 [node name="WallBottom" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 600 )
+
+[node name="Playtimer" type="Timer" parent="."]
+one_shot = true
 [connection signal="hit" from="PlayerTwo" to="." method="_on_PlayerTwo_hit"]
 [connection signal="hit" from="PlayerOne" to="." method="_on_PlayerOne_hit"]
+[connection signal="timeout" from="Playtimer" to="." method="_on_Playtimer_timeout"]
