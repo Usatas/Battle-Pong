@@ -39,7 +39,7 @@ var default_data = {
         "port":9080
        },
     "image":{
-        "format":"RGB8",
+        "format":"L8",
         "height":60,
         "width":100
        },
