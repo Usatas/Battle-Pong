@@ -12,6 +12,9 @@ func _ready():
     player_size =$CollisionShape2D.shape.extents
     if(is_player_one):
         $ColorRect.color=Color(0,0,0,1)
+        speed = $"/root/GameSettings".player_one_speed
+    else:
+        speed = $"/root/GameSettings".player_two_speed
 
 
 
