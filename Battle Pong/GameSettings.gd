@@ -4,6 +4,9 @@ export var rendering_enabled = false
 export var learn_with_images = true
 export var trainings_mode_enabled = false
 
+# Constant values !!!! Keep always up to date !!! 
+var display_window_width = 1024
+var display_window_height = 600
 
 var game_playtime_per_step
 var game_wins_to_reset
