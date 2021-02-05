@@ -278,7 +278,7 @@ func _on_data(id):
                         action_trainer_two = "nothing"          
                         
     if(next_step_player_one and next_step_player_two):
-        if($"/root/GameSettings".trainer_realtime_enabled):
+        if($"/root/GameSettings".trainings_mode_enabled and $"/root/GameSettings".trainer_realtime_enabled):
             yield(get_tree().create_timer(game_playtime_per_step), "timeout")
         unpause()
         $PlayerOne.run(game_playtime_per_step)
@@ -309,8 +309,12 @@ func get_screenshot():
     var thumbnail = get_viewport().get_texture().get_data()
     thumbnail.flip_y()    
     thumbnail.resize(100, 60 )
-    thumbnail.convert(Image.FORMAT_RGB8 ) # Farbe
-    #thumbnail.convert(Image.FORMAT_L8 ) # S/W
+    if $"/root/GameSettings".image_format == "RGB8": 
+        thumbnail.convert(Image.FORMAT_RGB8 ) # Farbe
+    elif $"/root/GameSettings".image_format =="L8":
+        thumbnail.convert(Image.FORMAT_L8 ) # S/W
+    else:
+        thumbnail.convert(Image.FORMAT_L8 ) # Settings
     
     #thumbnail.save_png('test.png') # Save Image as file - to debug
 
