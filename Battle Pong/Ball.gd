@@ -5,6 +5,7 @@ extends KinematicBody2D
 export var speed = 300 
 export var speed_max = 600
 export var bounce_degree_max = 60
+export var speed_increment = 20
 var ball_size
 var playing = false
 var velocity = Vector2(100,0)
@@ -15,6 +16,9 @@ var y_range = 100
 # Called when the node enters the scene tree for the first time.
 func _ready():
     set_sync_to_physics(false)
+    speed = $"/root/GameSettings".ball_speed_min
+    speed_max = $"/root/GameSettings".ball_speed_max
+    speed_increment = $"/root/GameSettings".ball_speed_increment
     pass
 
 
@@ -46,7 +50,7 @@ func run(delta):
 func ball_hit_paddle(player_position, player_shape, is_player_one):
     # Geschwindigkeitserhöhung
     if speed < speed_max:
-        speed +=20
+        speed +=speed_increment
     
     # Ball geht in die andere Richtung
     velocity.x*=-1
