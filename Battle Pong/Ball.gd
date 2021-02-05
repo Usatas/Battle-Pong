@@ -91,4 +91,6 @@ func start(pos):
 
 func get_observation():
     var move = velocity.normalized()*speed
-    return {"velocity":{"X":move.x,"Y":move.y}, "position":{"X":position.x,"Y":position.y}}
+    var ball_player_one = {"velocity":{"X":move.x,"Y":move.y}, "position":{"X":position.x,"Y":position.y}}
+    var ball_player_two = {"velocity":{"X":move.x*(-1),"Y":move.y}, "position":{"X":abs(position.x - $"/root/GameSettings".display_window_width),"Y":position.y}}
+    return {'player_one':ball_player_one, 'player_two':ball_player_two}
