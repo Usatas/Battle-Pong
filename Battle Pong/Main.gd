@@ -1,7 +1,7 @@
 extends Node
 
 # The port we will listen to.
-const PORT = 9080
+var port = 0
 # Our WebSocketServer instance.
 var _server = WebSocketServer.new()
 var player_one_client_id
@@ -43,7 +43,7 @@ func _ready():
     learn_with_images = $"/root/GameSettings".learn_with_images
     game_playtime_per_step = $"/root/GameSettings".game_playtime_per_step
     max_wins = $"/root/GameSettings".game_wins_to_reset
-    
+    port =  $"/root/GameSettings".game_port
     if not enable_rendering:
         VisualServer.render_loop_enabled = false # disable rendering to create a massive boost
     if learn_with_images:
@@ -62,7 +62,7 @@ func _ready():
     # in a loop for each connected peer.
     _server.connect("data_received", self, "_on_data")
     # Start listening on the given port.
-    var server_err = _server.listen(PORT)
+    var server_err = _server.listen(port)
     if server_err != OK:
         print("Unable to start server")
         set_process(false)
