@@ -6,6 +6,7 @@
 extents = Vector2( 7.96318, 39.9475 )
 
 [node name="Player" type="RigidBody2D"]
+pause_mode = 1
 position = Vector2( -0.325993, -1.00885 )
 collision_layer = 2
 collision_mask = 8
