@@ -323,12 +323,10 @@ func get_screenshot():
     var thumbnail = get_viewport().get_texture().get_data()
     thumbnail.flip_y()    
     thumbnail.resize(100, 60 )
-    if $"/root/GameSettings".image_format == "RGB8": 
+    if $"/root/GameSettings".image_rgb: 
         thumbnail.convert(Image.FORMAT_RGB8 ) # Farbe
-    elif $"/root/GameSettings".image_format =="L8":
-        thumbnail.convert(Image.FORMAT_L8 ) # S/W
     else:
-        thumbnail.convert(Image.FORMAT_L8 ) # Settings
+        thumbnail.convert(Image.FORMAT_L8 ) # S/W
     
     #thumbnail.save_png('test.png') # Save Image as file - to debug
 

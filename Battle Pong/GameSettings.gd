@@ -12,7 +12,7 @@ var game_playtime_per_step
 var game_wins_to_reset
 var game_port
 
-var image_format
+var image_rgb
 var image_heigth
 var image_width
 
@@ -90,6 +90,10 @@ func load_data():
     update_settings()
 
 func save_data():
+    var format = "L8"
+    if $"/root/GameSettings".image_rgb:
+        format = "RGB8"
+           
     data = {
         "game":{
             "playtime_per_step":$"/root/GameSettings".game_playtime_per_step,
@@ -97,7 +101,7 @@ func save_data():
             "port":$"/root/GameSettings".game_port
         },
         "image":{
-            "format":$"/root/GameSettings".image_format,
+            "format":format,
             "height":$"/root/GameSettings".image_heigth,
             "width":$"/root/GameSettings".image_width
         },
@@ -138,7 +142,11 @@ func update_settings():
     game_wins_to_reset = data["game"]["wins_to_reset"] as int
     game_port= data["game"]["port"] as int
 
-    image_format = data["image"]["format"]
+    var format = data["image"]["format"]
+    if format =="RGB8":
+        image_rgb =true
+    else:
+        image_rgb = false;
     image_heigth = data["image"]["height"] as int
     image_width = data["image"]["width"] as int
 

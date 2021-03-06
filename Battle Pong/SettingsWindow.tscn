@@ -37,8 +37,8 @@ __meta__ = {
 }
 
 [node name="grid_settings" type="GridContainer" parent="VBoxContainer"]
-margin_right = 347.0
-margin_bottom = 269.0
+margin_right = 376.0
+margin_bottom = 278.0
 columns = 3
 __meta__ = {
 "_edit_use_anchors_": false
@@ -46,7 +46,7 @@ __meta__ = {
 
 [node name="vbox_game_settings" type="VBoxContainer" parent="VBoxContainer/grid_settings"]
 margin_right = 163.0
-margin_bottom = 105.0
+margin_bottom = 114.0
 
 [node name="lbl_title_game_settings" type="Label" parent="VBoxContainer/grid_settings/vbox_game_settings"]
 margin_right = 163.0
@@ -98,12 +98,12 @@ margin_bottom = 87.0
 [node name="VSeparator" type="VSeparator" parent="VBoxContainer/grid_settings"]
 margin_left = 167.0
 margin_right = 171.0
-margin_bottom = 105.0
+margin_bottom = 114.0
 
 [node name="vbox_image_settings" type="VBoxContainer" parent="VBoxContainer/grid_settings"]
 margin_left = 175.0
 margin_right = 347.0
-margin_bottom = 105.0
+margin_bottom = 114.0
 
 [node name="lbl_title_image_settings" type="Label" parent="VBoxContainer/grid_settings/vbox_image_settings"]
 margin_right = 172.0
@@ -113,69 +113,69 @@ text = "Image:"
 [node name="grid_image_settings" type="GridContainer" parent="VBoxContainer/grid_settings/vbox_image_settings"]
 margin_top = 18.0
 margin_right = 172.0
-margin_bottom = 98.0
+margin_bottom = 114.0
 columns = 2
 
 [node name="lbl_image_format" type="Label" parent="VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings"]
-margin_top = 5.0
-margin_right = 45.0
-margin_bottom = 19.0
-text = "Format"
+margin_top = 13.0
+margin_right = 84.0
+margin_bottom = 27.0
+text = "Output RGB8"
 
-[node name="input_image_format" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings"]
-margin_left = 49.0
-margin_right = 107.0
-margin_bottom = 24.0
+[node name="input_image_format" type="CheckButton" parent="VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings"]
+margin_left = 88.0
+margin_right = 164.0
+margin_bottom = 40.0
 hint_tooltip = "example: 
 RGB8
 L8
 https://docs.godotengine.org/en/stable/classes/class_image.html#enumerations"
 
 [node name="lbl_image_heigth" type="Label" parent="VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings"]
-margin_top = 33.0
-margin_right = 45.0
-margin_bottom = 47.0
+margin_top = 49.0
+margin_right = 84.0
+margin_bottom = 63.0
 text = "Height"
 
 [node name="input_image_height" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings"]
-margin_left = 49.0
-margin_top = 28.0
-margin_right = 107.0
-margin_bottom = 52.0
+margin_left = 88.0
+margin_top = 44.0
+margin_right = 164.0
+margin_bottom = 68.0
 
 [node name="lbl_image_width" type="Label" parent="VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings"]
-margin_top = 61.0
-margin_right = 45.0
-margin_bottom = 75.0
+margin_top = 77.0
+margin_right = 84.0
+margin_bottom = 91.0
 text = "Width"
 
 [node name="input_image_width" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings"]
-margin_left = 49.0
-margin_top = 56.0
-margin_right = 107.0
-margin_bottom = 80.0
+margin_left = 88.0
+margin_top = 72.0
+margin_right = 164.0
+margin_bottom = 96.0
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/grid_settings"]
-margin_top = 109.0
+margin_top = 118.0
 margin_right = 163.0
-margin_bottom = 113.0
+margin_bottom = 122.0
 
 [node name="HSeparator6" type="HSeparator" parent="VBoxContainer/grid_settings"]
 margin_left = 167.0
-margin_top = 109.0
+margin_top = 118.0
 margin_right = 171.0
-margin_bottom = 113.0
+margin_bottom = 122.0
 
 [node name="HSeparator5" type="HSeparator" parent="VBoxContainer/grid_settings"]
 margin_left = 175.0
-margin_top = 109.0
+margin_top = 118.0
 margin_right = 347.0
-margin_bottom = 113.0
+margin_bottom = 122.0
 
 [node name="vbox_trainer_settings" type="VBoxContainer" parent="VBoxContainer/grid_settings"]
-margin_top = 117.0
+margin_top = 126.0
 margin_right = 163.0
-margin_bottom = 215.0
+margin_bottom = 224.0
 
 [node name="lbl_title_trainer_settings" type="Label" parent="VBoxContainer/grid_settings/vbox_trainer_settings"]
 margin_right = 163.0
@@ -238,15 +238,15 @@ margin_bottom = 40.0
 
 [node name="VSeparator2" type="VSeparator" parent="VBoxContainer/grid_settings"]
 margin_left = 167.0
-margin_top = 117.0
+margin_top = 126.0
 margin_right = 171.0
-margin_bottom = 215.0
+margin_bottom = 224.0
 
 [node name="vbox_ball_settings" type="VBoxContainer" parent="VBoxContainer/grid_settings"]
 margin_left = 175.0
-margin_top = 117.0
+margin_top = 126.0
 margin_right = 347.0
-margin_bottom = 215.0
+margin_bottom = 224.0
 
 [node name="lbl_title_ball_settings" type="Label" parent="VBoxContainer/grid_settings/vbox_ball_settings"]
 margin_right = 172.0
@@ -319,26 +319,26 @@ margin_right = 172.0
 margin_bottom = 80.0
 
 [node name="HSeparator7" type="HSeparator" parent="VBoxContainer/grid_settings"]
-margin_top = 219.0
+margin_top = 228.0
 margin_right = 163.0
-margin_bottom = 223.0
+margin_bottom = 232.0
 
 [node name="VSeparator3" type="HSeparator" parent="VBoxContainer/grid_settings"]
 margin_left = 167.0
-margin_top = 219.0
+margin_top = 228.0
 margin_right = 171.0
-margin_bottom = 223.0
+margin_bottom = 232.0
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer/grid_settings"]
 margin_left = 175.0
-margin_top = 219.0
+margin_top = 228.0
 margin_right = 347.0
-margin_bottom = 223.0
+margin_bottom = 232.0
 
 [node name="vbox_player_one_settings" type="VBoxContainer" parent="VBoxContainer/grid_settings"]
-margin_top = 227.0
+margin_top = 236.0
 margin_right = 163.0
-margin_bottom = 269.0
+margin_bottom = 278.0
 
 [node name="lbl_title_player_one_settings" type="Label" parent="VBoxContainer/grid_settings/vbox_player_one_settings"]
 margin_right = 163.0
@@ -377,15 +377,15 @@ margin_bottom = 24.0
 
 [node name="VSeparator4" type="VSeparator" parent="VBoxContainer/grid_settings"]
 margin_left = 167.0
-margin_top = 227.0
+margin_top = 236.0
 margin_right = 171.0
-margin_bottom = 269.0
+margin_bottom = 278.0
 
 [node name="vbox_player_two_settings" type="VBoxContainer" parent="VBoxContainer/grid_settings"]
 margin_left = 175.0
-margin_top = 227.0
+margin_top = 236.0
 margin_right = 347.0
-margin_bottom = 269.0
+margin_bottom = 278.0
 
 [node name="lbl_title_player_two_settings" type="Label" parent="VBoxContainer/grid_settings/vbox_player_two_settings"]
 margin_right = 172.0
@@ -422,26 +422,26 @@ margin_right = 101.0
 margin_bottom = 24.0
 
 [node name="VSeparator5" type="HSeparator" parent="VBoxContainer"]
-margin_top = 273.0
-margin_right = 347.0
-margin_bottom = 277.0
+margin_top = 282.0
+margin_right = 376.0
+margin_bottom = 286.0
 
 [node name="but_save" type="Button" parent="VBoxContainer"]
-margin_top = 281.0
-margin_right = 347.0
-margin_bottom = 301.0
+margin_top = 290.0
+margin_right = 376.0
+margin_bottom = 310.0
 text = "Save"
 
 [node name="but_cancel" type="Button" parent="VBoxContainer"]
-margin_top = 305.0
-margin_right = 347.0
-margin_bottom = 325.0
+margin_top = 314.0
+margin_right = 376.0
+margin_bottom = 334.0
 text = "Cancel"
 
 [node name="but_reset" type="Button" parent="VBoxContainer"]
-margin_top = 329.0
-margin_right = 347.0
-margin_bottom = 349.0
+margin_top = 338.0
+margin_right = 376.0
+margin_bottom = 358.0
 text = "Reset"
 [connection signal="pressed" from="VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_position" to="." method="_on_input_trainer_position_pressed"]
 [connection signal="pressed" from="VBoxContainer/but_save" to="." method="_on_but_save_pressed"]
