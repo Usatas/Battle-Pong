@@ -37,7 +37,7 @@ __meta__ = {
 }
 
 [node name="grid_settings" type="GridContainer" parent="VBoxContainer"]
-margin_right = 376.0
+margin_right = 347.0
 margin_bottom = 278.0
 columns = 3
 __meta__ = {
@@ -423,24 +423,24 @@ margin_bottom = 24.0
 
 [node name="VSeparator5" type="HSeparator" parent="VBoxContainer"]
 margin_top = 282.0
-margin_right = 376.0
+margin_right = 347.0
 margin_bottom = 286.0
 
 [node name="but_save" type="Button" parent="VBoxContainer"]
 margin_top = 290.0
-margin_right = 376.0
+margin_right = 347.0
 margin_bottom = 310.0
 text = "Save"
 
 [node name="but_cancel" type="Button" parent="VBoxContainer"]
 margin_top = 314.0
-margin_right = 376.0
+margin_right = 347.0
 margin_bottom = 334.0
 text = "Cancel"
 
 [node name="but_reset" type="Button" parent="VBoxContainer"]
 margin_top = 338.0
-margin_right = 376.0
+margin_right = 347.0
 margin_bottom = 358.0
 text = "Reset"
 [connection signal="pressed" from="VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_position" to="." method="_on_input_trainer_position_pressed"]
