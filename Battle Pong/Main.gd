@@ -51,21 +51,26 @@ func _ready():
         $Player1Score.hide()
         $Player2Score.hide()
     
-    # Connect base signals to get notified of new client connections,
-    # disconnections, and disconnect requests.
-    _server.connect("client_connected", self, "_connected")
-    _server.connect("client_disconnected", self, "_disconnected")
-    _server.connect("client_close_request", self, "_close_request")
-    # This signal is emitted when not using the Multiplayer API every time a
-    # full packet is received.
-    # Alternatively, you could check get_peer(PEER_ID).get_available_packets()
-    # in a loop for each connected peer.
-    _server.connect("data_received", self, "_on_data")
-    # Start listening on the given port.
-    var server_err = _server.listen(port)
-    if server_err != OK:
-        print("Unable to start server")
-        set_process(false)
+    if( $"/root/GameSettings".local_two_player):
+        $LocalTwoPlayerTimer.wait_time = $"/root/GameSettings".game_playtime_per_step
+        $LocalTwoPlayerTimer.start()
+        
+    else:
+        # Connect base signals to get notified of new client connections,
+        # disconnections, and disconnect requests.
+        _server.connect("client_connected", self, "_connected")
+        _server.connect("client_disconnected", self, "_disconnected")
+        _server.connect("client_close_request", self, "_close_request")
+        # This signal is emitted when not using the Multiplayer API every time a
+        # full packet is received.
+        # Alternatively, you could check get_peer(PEER_ID).get_available_packets()
+        # in a loop for each connected peer.
+        _server.connect("data_received", self, "_on_data")
+        # Start listening on the given port.
+        var server_err = _server.listen(port)
+        if server_err != OK:
+            print("Unable to start server")
+            set_process(false)
 
     set_ball()
     $PlayerOne.start($StartPositionPlayerOne.position)
@@ -384,3 +389,12 @@ func unpause():
     ball.set_pause(false)
     $PlayerOne.set_pause(false)
     $PlayerTwo.set_pause(false)
+
+
+func _on_LocalTwoPlayerTimer_timeout():
+    unpause()
+    $PlayerOne.run(game_playtime_per_step)
+    $PlayerTwo.run(game_playtime_per_step)
+    ball.run(game_playtime_per_step)
+    timeout()
+    pass # Replace with function body.

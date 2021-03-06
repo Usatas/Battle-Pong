@@ -12,6 +12,10 @@ func _ready():
 
 
 func _on_but_local_two_player_pressed():
+    $"/root/GameSettings".rendering_enabled = true
+    $"/root/GameSettings".learn_with_images = false
+    $"/root/GameSettings".local_two_player = true;
+    get_tree().change_scene("res://Main.tscn")
     pass # Replace with function body.
 
 

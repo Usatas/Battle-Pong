@@ -82,5 +82,9 @@ __meta__ = {
 
 [node name="WallBottom" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 600 )
+
+[node name="LocalTwoPlayerTimer" type="Timer" parent="."]
+wait_time = 0.01
 [connection signal="hit" from="PlayerTwo" to="." method="_on_PlayerTwo_hit"]
 [connection signal="hit" from="PlayerOne" to="." method="_on_PlayerOne_hit"]
+[connection signal="timeout" from="LocalTwoPlayerTimer" to="." method="_on_LocalTwoPlayerTimer_timeout"]

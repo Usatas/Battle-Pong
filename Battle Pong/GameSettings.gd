@@ -3,6 +3,7 @@ extends Node
 export var rendering_enabled = false
 export var learn_with_images = true
 export var trainings_mode_enabled = false
+export var local_two_player = false
 
 # Constant values !!!! Keep always up to date !!! 
 var display_window_width = 1024
