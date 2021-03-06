@@ -15,7 +15,8 @@ async def main():
     recieved_values = await gym.reset()
     data = recieved_values[0]
     print('main data', data)
-    image_mode = 'RGB'
+    #image_mode = 'RGB'
+    image_mode = 'L'
     try:
         # Test show Image
         si.show_image(image_mode, data['info']['screenshot']['width'], data['info']['screenshot']['height'],
