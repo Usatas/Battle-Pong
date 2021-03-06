@@ -48,7 +48,7 @@ __meta__ = {
 }
 
 [node name="StartPositionPlayerTwo" type="Position2D" parent="."]
-position = Vector2( 968, 300 )
+position = Vector2( 972, 300 )
 
 [node name="StartPositionBall" type="Position2D" parent="."]
 position = Vector2( 512, 300 )
@@ -57,10 +57,8 @@ position = Vector2( 512, 300 )
 position = Vector2( 52, 300 )
 
 [node name="PlayerTwo" parent="." instance=ExtResource( 1 )]
-pause_mode = 1
 
 [node name="PlayerOne" parent="." instance=ExtResource( 1 )]
-pause_mode = 1
 is_player_one = true
 
 [node name="ColorRect4" type="ColorRect" parent="."]
@@ -84,5 +82,9 @@ __meta__ = {
 
 [node name="WallBottom" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 600 )
+
+[node name="LocalTwoPlayerTimer" type="Timer" parent="."]
+wait_time = 0.01
 [connection signal="hit" from="PlayerTwo" to="." method="_on_PlayerTwo_hit"]
 [connection signal="hit" from="PlayerOne" to="." method="_on_PlayerOne_hit"]
+[connection signal="timeout" from="LocalTwoPlayerTimer" to="." method="_on_LocalTwoPlayerTimer_timeout"]

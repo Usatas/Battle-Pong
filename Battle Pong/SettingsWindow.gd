@@ -17,7 +17,7 @@ func update_gui():
     $VBoxContainer/grid_settings/vbox_game_settings/grid_game_settings/input_game_wins_to_reset.text = str($"/root/GameSettings".game_wins_to_reset)
     $VBoxContainer/grid_settings/vbox_game_settings/grid_game_settings/input_game_port.text= str($"/root/GameSettings".game_port)
 
-    $VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings/input_image_format.text = $"/root/GameSettings".image_format
+    $VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings/input_image_format.pressed = $"/root/GameSettings".image_rgb
     $VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings/input_image_height.text = str($"/root/GameSettings".image_heigth)
     $VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings/input_image_width.text = str($"/root/GameSettings".image_width)
 
@@ -57,7 +57,7 @@ func _on_but_save_pressed():
     $"/root/GameSettings".game_wins_to_reset = $VBoxContainer/grid_settings/vbox_game_settings/grid_game_settings/input_game_wins_to_reset.text as int
     $"/root/GameSettings".game_port = $VBoxContainer/grid_settings/vbox_game_settings/grid_game_settings/input_game_port.text as int
 
-    $"/root/GameSettings".image_format = $VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings/input_image_format.text
+    $"/root/GameSettings".image_rgb = $VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings/input_image_format.pressed
     $"/root/GameSettings".image_heigth = $VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings/input_image_height.text as int
     $"/root/GameSettings".image_width = $VBoxContainer/grid_settings/vbox_image_settings/grid_image_settings/input_image_width.text as int
 
