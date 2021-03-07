@@ -71,3 +71,9 @@ func _on_but_trainer_with_position_pressed():
 func _on_but_settings_pressed():
     get_tree().change_scene("res://SettingsWindow.tscn")
 
+
+
+func _on_ckb_Obstackles_pressed():
+    $"/root/GameSettings".obstacles_enabled = $HBoxContainer/VBoxContainer/ckb_Obstackles.pressed
+    print($"/root/GameSettings".obstacles_enabled)
+    pass # Replace with function body.
