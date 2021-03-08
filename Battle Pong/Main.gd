@@ -309,6 +309,8 @@ func _on_data(id):
         $PlayerOne.run(game_playtime_per_step)
         $PlayerTwo.run(game_playtime_per_step)
         ball.run(game_playtime_per_step)
+        if $"/root/GameSettings".obstacles_enabled:
+            $Obstacle.run(game_playtime_per_step)
         timeout()
     
         
