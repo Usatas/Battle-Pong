@@ -89,6 +89,7 @@ position = Vector2( 0, 600 )
 wait_time = 0.01
 
 [node name="Obstacle" parent="." instance=ExtResource( 4 )]
+visible = false
 script = ExtResource( 5 )
 
 [node name="StartPositionObstacleTop" type="Position2D" parent="."]
