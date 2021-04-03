@@ -1,11 +1,5 @@
 extends StaticBody2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-var min_speed = 300
-var max_speed = 700
 var speed=0
 var start_position
 var playing = false
@@ -17,7 +11,7 @@ var bottom_position
 func _ready():
     randomize()
     #speed = rand_range(min_speed, max_speed)
-    speed = 500
+    speed = $"/root/GameSettings".obstacle_speed
     
     obstacle_size =$CollisionShape2D.shape.extents
     top_position = 0- obstacle_size.y

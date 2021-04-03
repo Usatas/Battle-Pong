@@ -35,6 +35,9 @@ var player_one_speed
 var player_two_length
 var player_two_speed
 
+var obstacle_length
+var obstacle_speed
+
 var path="data.json"
 
 var default_data = {
@@ -68,6 +71,10 @@ var default_data = {
     "player_two":{
         "length":60,
         "speed":300
+       },
+    "obstacle":{
+        "length":60,
+        "speed":500
        }
    }
 
@@ -75,12 +82,12 @@ var data = default_data
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    reset_data() # Initialize Values
     load_data()
     pass # Replace with function body.
     
 func load_data():
     var file = File.new()
-    
     if not file.file_exists(path):
         reset_data()
         return
@@ -127,6 +134,10 @@ func save_data():
         "player_two":{
             "length":$"/root/GameSettings".player_two_length,
             "speed":$"/root/GameSettings".player_two_speed
+        },
+        "obstacle":{
+            "length":$"/root/GameSettings".obstacle_length,
+            "speed":$"/root/GameSettings".obstacle_speed
         }
     }
     var file
@@ -140,33 +151,65 @@ func reset_data():
     update_settings()
     
 func update_settings():
-    game_playtime_per_step = data["game"]["playtime_per_step"] as float
-    game_wins_to_reset = data["game"]["wins_to_reset"] as int
-    game_port= data["game"]["port"] as int
+    if data.has("game"):
+        if data["game"].has("playtime_per_step"):
+            game_playtime_per_step = data["game"]["playtime_per_step"] as float
+        if data["game"].has("wins_to_reset"):
+            game_wins_to_reset = data["game"]["wins_to_reset"] as int
+        if data["game"].has("port"):
+            game_port= data["game"]["port"] as int
+            
+    if data.has("image"):
+        if data["image"].has("format"):
+            var format = data["image"]["format"]
+            if format == "RGB8":
+                image_rgb =true
+            else:
+                image_rgb = false;
+        if data["image"].has("height"):
+            image_heigth = data["image"]["height"] as int
+        if data["image"].has("width"):
+            image_width = data["image"]["width"] as int
+    
+    
+    if data.has("trainer"):
+        if data["trainer"].has("ip"):
+            trainer_ip = data["trainer"]["ip"]
+        if data["trainer"].has("ip"):
+            trainer_port = data["trainer"]["ip"] as int
+        if data["trainer"].has("position"):
+            trainer_position = data["trainer"]["position"]
+        if data["trainer"].has("realtime_enabled"):
+            trainer_realtime_enabled = data["trainer"]["realtime_enabled"] as bool
 
-    var format = data["image"]["format"]
-    if format =="RGB8":
-        image_rgb =true
-    else:
-        image_rgb = false;
-    image_heigth = data["image"]["height"] as int
-    image_width = data["image"]["width"] as int
+    if data.has("ball"):
+        if data["ball"].has("height"):
+            ball_height =data["ball"]["height"] as int
+        if data["ball"].has("width"):
+            ball_width = data["ball"]["width"] as int
+        if data["ball"].has("speed_min"):
+           ball_speed_min = data["ball"]["speed_min"] as int
+        if data["ball"].has("speed_max"):
+            ball_speed_max = data["ball"]["speed_max"] as int 
+        if data["ball"].has("speed_increment"):
+            ball_speed_increment = data["ball"]["speed_increment"] as int
 
-    trainer_ip = data["trainer"]["ip"]
-    trainer_port = data["trainer"]["port"] as int
-    trainer_position = data["trainer"]["position"]
-    trainer_realtime_enabled = data["trainer"]["realtime_enabled"] as bool
+    if data.has("player_one"):
+        if data["player_one"].has("length"):
+            player_one_length = data["player_one"]["length"] as int
+        if data["player_one"].has("speed"):
+            player_one_speed = data["player_one"]["speed"] as int
 
-    ball_height =data["ball"]["height"] as int
-    ball_width = data["ball"]["width"] as int
-    ball_speed_min = data["ball"]["speed_min"] as int
-    ball_speed_max = data["ball"]["speed_max"] as int 
-    ball_speed_increment = data["ball"]["speed_increment"] as int
+    if data.has("player_two"):
+        if data["player_two"].has("length"):
+            player_two_length = data["player_two"]["length"] as int
+        if data["player_two"].has("speed"):
+            player_two_speed = data["player_two"]["speed"] as int
 
-    player_one_length = data["player_one"]["length"] as int
-    player_one_speed = data["player_one"]["speed"] as int
-
-    player_two_length = data["player_two"]["length"] as int
-    player_two_speed = data["player_two"]["speed"] as int
+    if data.has("obstacle"):
+        if data["obstacle"].has("length"):
+            obstacle_length = data["obstacle"]["length"] as int
+        if data["obstacle"].has("speed"):
+            obstacle_speed = data["obstacle"]["speed"] as int
 
 
