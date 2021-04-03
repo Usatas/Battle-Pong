@@ -128,7 +128,7 @@ func check_point_scored():
         reward_player_two=(-1)
         print("player one won")
     update_score()
-    if score_player_one == 5 or score_player_two == 5:
+    if score_player_one == $"/root/GameSettings".game_wins_to_reset or score_player_two == $"/root/GameSettings".game_wins_to_reset:
         game_done = true
 
 func handle_score_event():
