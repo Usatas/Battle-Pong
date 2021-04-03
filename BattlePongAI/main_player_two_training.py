@@ -7,7 +7,7 @@ from Gym import Gym
 
 async def main():
     print("Hello World!")
-    gym = Gym("localhost", 9080, "player_one")
+    gym = Gym("localhost", 9080, "player_two")
 
     recieved_values = await gym.connect_player()
     data = recieved_values[0]

@@ -28,17 +28,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -141.5
-margin_top = -181.0
-margin_right = 141.5
-margin_bottom = 181.0
+margin_left = -173.5
+margin_top = -206.0
+margin_right = 173.5
+margin_bottom = 206.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="grid_settings" type="GridContainer" parent="VBoxContainer"]
 margin_right = 347.0
-margin_bottom = 278.0
+margin_bottom = 332.0
 columns = 3
 __meta__ = {
 "_edit_use_anchors_": false
@@ -421,27 +421,90 @@ margin_left = 43.0
 margin_right = 101.0
 margin_bottom = 24.0
 
-[node name="VSeparator5" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator8" type="HSeparator" parent="VBoxContainer/grid_settings"]
+margin_top = 282.0
+margin_right = 163.0
+margin_bottom = 286.0
+
+[node name="VSeparator5" type="HSeparator" parent="VBoxContainer/grid_settings"]
+margin_left = 167.0
+margin_top = 282.0
+margin_right = 171.0
+margin_bottom = 286.0
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/grid_settings"]
+margin_left = 175.0
 margin_top = 282.0
 margin_right = 347.0
 margin_bottom = 286.0
 
-[node name="but_save" type="Button" parent="VBoxContainer"]
+[node name="vbox_obstacle_settings" type="VBoxContainer" parent="VBoxContainer/grid_settings"]
 margin_top = 290.0
+margin_right = 163.0
+margin_bottom = 332.0
+
+[node name="lbl_title_obstacle_settings" type="Label" parent="VBoxContainer/grid_settings/vbox_obstacle_settings"]
+margin_right = 163.0
+margin_bottom = 14.0
+text = "Obstacle:"
+
+[node name="grid_obstacle_settings" type="GridContainer" parent="VBoxContainer/grid_settings/vbox_obstacle_settings"]
+margin_top = 18.0
+margin_right = 163.0
+margin_bottom = 42.0
+columns = 2
+
+[node name="lbl_obstacle_length" type="Label" parent="VBoxContainer/grid_settings/vbox_obstacle_settings/grid_obstacle_settings"]
+visible = false
+margin_right = 58.0
+margin_bottom = 14.0
+text = "Length"
+
+[node name="input_obstacle_length" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_obstacle_settings/grid_obstacle_settings"]
+visible = false
+margin_left = 47.0
+margin_right = 105.0
+margin_bottom = 24.0
+editable = false
+
+[node name="lbl_obstacle_speed" type="Label" parent="VBoxContainer/grid_settings/vbox_obstacle_settings/grid_obstacle_settings"]
+margin_top = 5.0
+margin_right = 39.0
+margin_bottom = 19.0
+text = "Speed"
+
+[node name="input_obstacle_speed" type="LineEdit" parent="VBoxContainer/grid_settings/vbox_obstacle_settings/grid_obstacle_settings"]
+margin_left = 43.0
+margin_right = 101.0
+margin_bottom = 24.0
+
+[node name="VSeparator6" type="VSeparator" parent="VBoxContainer/grid_settings"]
+margin_left = 167.0
+margin_top = 290.0
+margin_right = 171.0
+margin_bottom = 332.0
+
+[node name="VSeparator7" type="HSeparator" parent="VBoxContainer"]
+margin_top = 336.0
 margin_right = 347.0
-margin_bottom = 310.0
+margin_bottom = 340.0
+
+[node name="but_save" type="Button" parent="VBoxContainer"]
+margin_top = 344.0
+margin_right = 347.0
+margin_bottom = 364.0
 text = "Save"
 
 [node name="but_cancel" type="Button" parent="VBoxContainer"]
-margin_top = 314.0
+margin_top = 368.0
 margin_right = 347.0
-margin_bottom = 334.0
+margin_bottom = 388.0
 text = "Cancel"
 
 [node name="but_reset" type="Button" parent="VBoxContainer"]
-margin_top = 338.0
+margin_top = 392.0
 margin_right = 347.0
-margin_bottom = 358.0
+margin_bottom = 412.0
 text = "Reset"
 [connection signal="pressed" from="VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_position" to="." method="_on_input_trainer_position_pressed"]
 [connection signal="pressed" from="VBoxContainer/but_save" to="." method="_on_but_save_pressed"]

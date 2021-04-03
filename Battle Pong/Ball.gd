@@ -41,7 +41,8 @@ func run(delta):
                 ball_hit_paddle(get_tree().get_root().find_node("PlayerOne", true, false).position, get_tree().get_root().find_node("PlayerOne", true, false).get_shape(), true) 
             elif collision.collider.name == "PlayerTwo":
                 ball_hit_paddle(get_tree().get_root().find_node("PlayerTwo", true, false).position, get_tree().get_root().find_node("PlayerTwo", true, false).get_shape(), false) 
-                
+            elif collision.collider.name =="Obstacle":
+                velocity = velocity.bounce(collision.normal)
                 pass
                 # velocity.x *=-1
                 # var localCollisionPos = collision.Position - collision.collider.Position;

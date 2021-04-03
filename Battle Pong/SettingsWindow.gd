@@ -43,6 +43,9 @@ func update_gui():
     $VBoxContainer/grid_settings/vbox_player_two_settings/grid_player_two_settings/input_player_two_length.text = str($"/root/GameSettings".player_two_length)
     $VBoxContainer/grid_settings/vbox_player_two_settings/grid_player_two_settings/input_player_two_speed.text = str($"/root/GameSettings".player_two_speed)
 
+    $VBoxContainer/grid_settings/vbox_obstacle_settings/grid_obstacle_settings/input_obstacle_length.text = str($"/root/GameSettings".obstacle_length)
+    $VBoxContainer/grid_settings/vbox_obstacle_settings/grid_obstacle_settings/input_obstacle_speed.text = str($"/root/GameSettings".obstacle_speed)
+
 
 func _on_input_trainer_position_pressed():
     if $VBoxContainer/grid_settings/vbox_trainer_settings/grid_trainer_settings/input_trainer_position.is_pressed():
@@ -77,6 +80,9 @@ func _on_but_save_pressed():
 
     $"/root/GameSettings".player_two_length = $VBoxContainer/grid_settings/vbox_player_two_settings/grid_player_two_settings/input_player_two_length.text as int
     $"/root/GameSettings".player_two_speed = $VBoxContainer/grid_settings/vbox_player_two_settings/grid_player_two_settings/input_player_two_speed.text as int
+
+    $"/root/GameSettings".obstacle_length = $VBoxContainer/grid_settings/vbox_obstacle_settings/grid_obstacle_settings/input_obstacle_length.text as int
+    $"/root/GameSettings".obstacle_speed = $VBoxContainer/grid_settings/vbox_obstacle_settings/grid_obstacle_settings/input_obstacle_speed.text as int
     
     $"/root/GameSettings".save_data()
     

@@ -17,6 +17,8 @@ var action_player_two =  InputEventAction.new()
 var next_step_player_two = false
 var action_trainer_two = ""
 
+
+
 var Ball = preload("Ball.tscn")
 var ball = Ball.instance()
 var score_player_one = 0
@@ -75,10 +77,16 @@ func _ready():
     set_ball()
     $PlayerOne.start($StartPositionPlayerOne.position)
     $PlayerTwo.start($StartPositionPlayerTwo.position)
+    if $"/root/GameSettings".obstacles_enabled:
+        set_obstacle()
+        
     display_message()
     update_score()
     pause()
 
+func set_obstacle():
+    
+    $Obstacle.start($StartPositionObstacleTop.position)
 
 func _input(_event):
     if Input.is_key_pressed(KEY_SPACE):
@@ -93,6 +101,7 @@ func play():
         update_score()    
     playing = true
     ball.set_playing(playing)
+    $Obstacle.set_playing(playing)
     $DisplayMessage.visible = false
 
 
@@ -130,6 +139,8 @@ func handle_score_event():
         display_message()
         playing = false
         score_event = false
+        $Obstacle.set_playing(playing)
+        
 
     
 func update_score():
@@ -169,6 +180,7 @@ func handle_game_end():
         else:
             message = P2_WIN
         display_message()
+
 
 
 
@@ -297,6 +309,8 @@ func _on_data(id):
         $PlayerOne.run(game_playtime_per_step)
         $PlayerTwo.run(game_playtime_per_step)
         ball.run(game_playtime_per_step)
+        if $"/root/GameSettings".obstacles_enabled:
+            $Obstacle.run(game_playtime_per_step)
         timeout()
     
         
@@ -383,12 +397,14 @@ func pause():
     ball.set_pause(true)
     $PlayerOne.set_pause(true)
     $PlayerTwo.set_pause(true)
+    $Obstacle.set_pause(true)
     
 func unpause():
     #print("unpause")
     ball.set_pause(false)
     $PlayerOne.set_pause(false)
     $PlayerTwo.set_pause(false)
+    $Obstacle.set_pause(false)
 
 
 func _on_LocalTwoPlayerTimer_timeout():
@@ -396,5 +412,7 @@ func _on_LocalTwoPlayerTimer_timeout():
     $PlayerOne.run(game_playtime_per_step)
     $PlayerTwo.run(game_playtime_per_step)
     ball.run(game_playtime_per_step)
+    if $"/root/GameSettings".obstacles_enabled:
+        $Obstacle.run(game_playtime_per_step)
     timeout()
     pass # Replace with function body.
