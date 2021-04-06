@@ -120,6 +120,9 @@ In dem **Settings Window** können allgemeine Einstellungen, Geschwindigkeit und
 * Player 2:
     * Speed:\
     Geschwindigkeitsfaktor von Spieler 2 (rechts)
+* Obstacle:
+    * Speed:\
+    Geschwindigkeitsfaktor des Hindernisses/Obstacle (mitte)
 * **Save**\
 Speichert die Einstellungen in data.json und wechselt zum Hauptmenü
 * **Cancel**\
