@@ -6,6 +6,9 @@ Zudem sollen die Algorithmen von den menschlichen Spielern lernen können.
 Die Datenübertragung wird per Websockets realisiert und die Daten sind in JSON kodiert.
 Die Schnittstelle in Python ist an der [Gym API](https://gym.openai.com/) orientiert, um den Einstieg und die Nutzung möglichst einfach zu gestalten. 
 
+## Screencast:
+
+https://hs-bochum.sciebo.de/s/2c2gzI7IaXMFeW1
 
 ## Lernvarianten
 
